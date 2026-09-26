@@ -1,4 +1,22 @@
 const HERITAGE_DATA = [
+  {
+        name: "Gour Mahavidyalaya Historical Archives",
+        state: "West Bengal",
+        district: "Malda",
+        category: "Architecture",
+        description: "Field documentation of ancient educational site ruins and architectural foundations.",
+        lat: 24.8829, 
+        lng: 88.1360
+    },
+    {
+        name: "Malda Museum",
+        state: "West Bengal",
+        district: "Malda",
+        category: "Wisdom",
+        description: "Curated regional artifacts, manuscripts, and preservation records.",
+        lat: 25.0108,
+        lng: 88.1411
+    },
 {"state": "Andaman and Nicobar Islands", "district": "South Andaman", "name": "Cellular Jail", "category": "Memorial", "notes": "Colonial-era prison for freedom fighters"},
 {"state": "Andhra Pradesh", "district": "Tirupati", "name": "Tirumala Venkateswara Temple", "category": "Mandir", "notes": "One of the world's richest temples"},
 {"state": "Andhra Pradesh", "district": "Visakhapatnam", "name": "Simhachalam Temple", "category": "Mandir", "notes": "Narasimha shrine"},
@@ -427,3 +445,13 @@ const HERITAGE_DATA = [
     if(e.key === 'Enter') sendMessage();
   });
 })();
+window.openCategory = function(categoryName) {
+    // 1. Filter the data to find matching heritage sites
+    const filteredSites = HERITAGE_DATA.filter(site => site.category === categoryName);
+    
+    // 2. Send the filtered sites to the map
+    updateMap(filteredSites);
+    
+    // 3. Smoothly scroll the screen down so the user can see the map
+    document.getElementById('map').scrollIntoView({ behavior: 'smooth' });
+};
