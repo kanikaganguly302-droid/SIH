@@ -239,7 +239,7 @@
         
         <div class="search-container">
             <input type="text" placeholder="📍 Detect my location: Show heritage within 50km...">
-            <button class="search-btn" onclick="discoverHeritage()">Discover</button>
+            <button class="search-btn" onclick="loadMap()">Discover</button>
         </div>
     </section>
 
@@ -286,17 +286,6 @@
     <div class="ai-assistant" onclick="toggleAI()">
         ✨
     </div>
-
-    <script>
-        // Interactive functions for the prototype
-        function discoverHeritage() {
-            alert("Fetching authentic resources and mapping 50km radius... Loading local folk traditions and historical sites!");
-        }
-
-        function openCategory(category) {
-            alert("Opening authentic, verified sources from National Geographic, BBC, and historical journals for: " + category);
-        } 
-    </script>
 <div style="position: fixed; bottom: 20px; right: 20px; width: 350px; background: white; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); z-index: 1000; padding: 15px;">
     <h3 style="margin-top: 0; color: #800000;">AI Heritage Guide</h3>
     <div id="chat-messages" style="height: 250px; overflow-y: auto; margin-bottom: 10px; border-bottom: 1px solid #ddd; padding-bottom: 10px;"></div>
