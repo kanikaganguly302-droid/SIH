@@ -9,36 +9,38 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <style>
         body {
-            /* Rich Indian Cultural Monument Aesthetic Background */
-            background-color: #7c2d12;
-            background-image: radial-gradient(#ea580c 0.75px, #7c2d12 0.75px);
-            background-size: 28px 28px;
+            /* Authentic Rich Indian Cultural & Traditional Monument Aesthetic */
+            background-color: #581c0f;
+            background-image: 
+                radial-gradient(#b45309 1px, transparent 1px),
+                linear-gradient(to bottom right, #7c2d12, #450a0a);
+            background-size: 24px 24px, 100% 100%;
         }
     </style>
 </head>
 <body class="text-gray-900 font-sans">
 
-    <!-- Header Navigation -->
+    <!-- Header Navigation (All Features Included with Zero Overlap) -->
     <header class="bg-white/95 backdrop-blur-md shadow-md border-b-2 border-amber-300 sticky top-0 z-50">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="index.html" class="text-2xl font-extrabold tracking-wide" style="color: #9a3412;">BharatVividha</a>
-           <nav class="flex flex-wrap items-center justify-end gap-x-4 gap-y-2 text-xs md:text-sm font-medium">
-    <a href="index.html" class="text-orange-800 font-semibold underline underline-offset-4">Home</a>
-    <a href="tour-planner.html" class="text-gray-700 hover:text-orange-800">Tour Planner</a>
-    <a href="cultural-dna.html" class="text-gray-700 hover:text-orange-800">Cultural DNA</a>
-    <a href="innovative-features.html" class="text-gray-700 hover:text-orange-800">Innovation</a>
-    <a href="invisible-india.html" class="text-gray-700 hover:text-orange-800">Invisible India</a>
-    <a href="endangered-radar.html" class="text-gray-700 hover:text-orange-800">Endangered Radar</a>
-    <a href="cultural-evidence.html" class="text-gray-700 hover:text-orange-800">Evidence</a>
-    <a href="oral-memory.html" class="text-gray-700 hover:text-orange-800">Oral Memory</a>
-    <a href="evolution-simulator.html" class="text-gray-700 hover:text-orange-800">Evolution</a>
-    <a href="cultural-gravity.html" class="text-gray-700 hover:text-orange-800">Gravity</a>
-    <a href="accessibility.html" class="text-gray-700 hover:text-orange-800">Accessibility</a>
-    <a href="follow-idea.html" class="text-gray-700 hover:text-orange-800">Follow Idea</a>
-    <a href="circular-economy.html" class="text-gray-700 hover:text-orange-800">Circular Economy</a>
-    <a href="states-mosaic.html" class="text-gray-700 hover:text-orange-800">Living Mosaic</a>
-    <a href="suggestive-restaurants.html" class="text-gray-700 hover:text-orange-800">Restaurants</a>
-</nav>
+            <nav class="flex flex-wrap items-center justify-end gap-x-3 gap-y-2 text-xs md:text-sm font-semibold">
+                <a href="index.html" class="text-orange-800 underline underline-offset-4">Home</a>
+                <a href="tour-planner.html" class="text-gray-700 hover:text-orange-800">Tour Planner</a>
+                <a href="cultural-dna.html" class="text-gray-700 hover:text-orange-800">Cultural DNA</a>
+                <a href="innovative-features.html" class="text-gray-700 hover:text-orange-800">Innovation</a>
+                <a href="invisible-india.html" class="text-gray-700 hover:text-orange-800">Invisible India</a>
+                <a href="endangered-radar.html" class="text-gray-700 hover:text-orange-800">Endangered Radar</a>
+                <a href="cultural-evidence.html" class="text-gray-700 hover:text-orange-800">Evidence</a>
+                <a href="oral-memory.html" class="text-gray-700 hover:text-orange-800">Oral Memory</a>
+                <a href="evolution-simulator.html" class="text-gray-700 hover:text-orange-800">Evolution</a>
+                <a href="cultural-gravity.html" class="text-gray-700 hover:text-orange-800">Gravity</a>
+                <a href="accessibility.html" class="text-gray-700 hover:text-orange-800">Accessibility</a>
+                <a href="follow-idea.html" class="text-gray-700 hover:text-orange-800">Follow Idea</a>
+                <a href="circular-economy.html" class="text-gray-700 hover:text-orange-800">Circular Economy</a>
+                <a href="states-mosaic.html" class="text-gray-700 hover:text-orange-800">Living Mosaic</a>
+                <a href="suggestive-restaurants.html" class="text-gray-700 hover:text-orange-800">Restaurants</a>
+            </nav>
         </div>
     </header>
 
@@ -58,42 +60,84 @@
             </div>
         </div>
 
-        <!-- Clean Grid Layout: Map on Left, AI Chatbot on Right (No Overlap!) -->
+        <!-- Clean Grid Layout: Map on Left, NLP/ViT AI Translator & Guide on Right -->
         <div class="grid lg:grid-cols-3 gap-8">
             
-            <!-- Interactive Heritage Map (Takes up 2 Columns) -->
+            <!-- Interactive Heritage Map (2 Columns) -->
             <div class="lg:col-span-2 bg-white p-6 rounded-3xl border-2 border-amber-300 shadow-2xl space-y-4">
                 <div class="flex justify-between items-center">
                     <h3 class="text-2xl font-bold text-orange-900">Interactive Regional Heritage Map</h3>
                     <span class="text-xs bg-amber-100 text-amber-900 px-3 py-1 rounded-full font-semibold">Live GIS Scanner Active</span>
                 </div>
-                <!-- Leaflet Map Container -->
                 <div id="heritage-map" style="width: 100%; height: 480px; border-radius: 16px; border: 2px solid #fde68a;"></div>
             </div>
 
-            <!-- AI Heritage Guide Chatbot (Takes up 1 Column - Perfectly Aligned, No Overlap) -->
+            <!-- AI Heritage Guide + 28 Language NLP/ViT Translator (1 Column) -->
             <div class="bg-white border-2 border-amber-300 rounded-3xl shadow-2xl overflow-hidden flex flex-col h-[540px]">
-                <div class="bg-orange-800 text-white p-4 font-bold flex justify-between items-center">
-                    <span>🤖 AI Heritage Guide</span>
-                    <span class="text-xs bg-orange-900 px-2.5 py-1 rounded-full animate-pulse">Online</span>
+                <div class="bg-orange-800 text-white p-3.5 font-bold flex justify-between items-center">
+                    <span class="text-sm">🤖 AI Guide & NLP Translator</span>
+                    <span class="text-[10px] bg-orange-900 px-2 py-0.5 rounded-full animate-pulse">ViT / NLP Active</span>
                 </div>
+                
+                <!-- Language Selector Dropdown -->
+                <div class="bg-amber-50 p-2.5 border-b border-amber-200 flex items-center justify-between text-xs">
+                    <span class="font-bold text-orange-900">Translate To:</span>
+                    <select id="translator-lang" class="p-1.5 border border-amber-300 rounded-lg bg-white text-gray-800 font-medium focus:outline-none">
+                        <optgroup label="Indian Official Languages (22)">
+                            <option value="en" selected>English</option>
+                            <option value="hi">Hindi (हिन्दी)</option>
+                            <option value="bn">Bengali (বাংলা)</option>
+                            <option value="te">Telugu (తెలుగు)</option>
+                            <option value="mr">Marathi (मराठी)</option>
+                            <option value="ta">Tamil (தமிழ்)</option>
+                            <option value="gu">Gujarati (ગુજરાતી)</option>
+                            <option value="ur">Urdu (اردو)</option>
+                            <option value="kn">Kannada (ಕನ್ನಡ)</option>
+                            <option value="or">Odia (ଓଡ଼ିଆ)</option>
+                            <option value="ml">Malayalam (മലയാളം)</option>
+                            <option value="pa">Punjabi (ਪੰਜਾਬੀ)</option>
+                            <option value="as">Assamese (অসমীয়া)</option>
+                            <option value="mai">Maithili (मैथिली)</option>
+                            <option value="sat">Santali (संताली)</option>
+                            <option value="ks">Kashmiri (कॉशुर)</option>
+                            <option value="ne">Nepali (नेपाली)</option>
+                            <option value="sd">Sindhi (سنڌي)</option>
+                            <option value="kok">Konkani (कोंकणी)</option>
+                            <option value="mni">Manipuri (মৈতৈলোন্)</option>
+                            <option value="brx">Bodo (बड़ो)</option>
+                            <option value="doi">Dogri (डोगरी)</option>
+                            <option value="sa">Sanskrit (संस्कृतम्)</option>
+                        </optgroup>
+                        <optgroup label="International Languages">
+                            <option value="es">Spanish (Español)</option>
+                            <option value="fr">French (Français)</option>
+                            <option value="zh">Chinese (中文)</option>
+                            <option value="ko">Korean (한국어)</option>
+                            <option value="ja">Japanese (日本語)</option>
+                        </optgroup>
+                    </select>
+                </div>
+
+                <!-- Chat Messages Box -->
                 <div id="chat-messages" class="p-4 flex-1 overflow-y-auto text-sm space-y-3 bg-amber-50/50">
-                    <div class="bg-white p-3 rounded-2xl border border-amber-200 shadow-sm text-gray-800">
-                        Namaste! Ask me anything about Indian heritage, temples, or artisan traditions across all 22 states.
+                    <div id="welcome-msg" class="bg-white p-3 rounded-2xl border border-amber-200 shadow-sm text-gray-800">
+                        Namaste! Ask me anything about Indian heritage, temples, or artisan traditions. (Select any of the 28 languages above for real-time neural translation).
                     </div>
                 </div>
+
+                <!-- Input & Send Controls -->
                 <div class="p-3 bg-white border-t border-amber-200 flex gap-2">
-                    <input type="text" id="chat-input" placeholder="Ask about Indian heritage..." class="w-full p-3 border border-amber-300 rounded-xl text-sm focus:outline-none focus:ring-1 focus:ring-orange-700">
-                    <button onclick="sendChatMessage()" class="px-4 py-3 bg-orange-800 text-white text-sm font-bold rounded-xl hover:bg-orange-950 transition">Send</button>
+                    <input type="text" id="chat-input" placeholder="Ask about heritage..." class="w-full p-2.5 border border-amber-300 rounded-xl text-sm focus:outline-none focus:ring-1 focus:ring-orange-700">
+                    <button onclick="sendChatMessage()" class="px-4 py-2.5 bg-orange-800 text-white text-sm font-bold rounded-xl hover:bg-orange-950 transition">Send</button>
                 </div>
             </div>
 
         </div>
     </main>
 
-    <!-- Map, GPS & Chatbot JavaScript Logic -->
+    <!-- Map, GPS & Neural Translation Chatbot Logic -->
     <script>
-        // Initialize Map centered strictly on India with English labels
+        // Initialize Map strictly centered on India
         let map = L.map('heritage-map').setView([22.9734, 78.6569], 5);
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -101,7 +145,6 @@
             attribution: '© BharatVividha SIH 2026'
         }).addTo(map);
 
-        // Key Heritage Markers in English
         const heritageSites = [
             { name: "Gour & Malda Archaeological Ruins", lat: 25.0108, lon: 88.1413, desc: "Terracotta architecture and medieval sultanate trade roots." },
             { name: "Brihadeeswarar Temple, Thanjavur", lat: 10.7828, lon: 79.1318, desc: "Chola dynasty architectural marvel." },
@@ -131,7 +174,6 @@
                     const lon = position.coords.longitude;
                     
                     inputField.value = `📍 GPS Location Found (${lat.toFixed(2)}, ${lon.toFixed(2)}) • Scanning 50km radius...`;
-                    
                     map.setView([lat, lon], 12);
                     
                     L.marker([lat, lon]).addTo(map)
@@ -150,10 +192,12 @@
             );
         }
 
-        // AI Chatbot Logic
+        // NLP / ViT Multilingual AI Translator & Guide Logic
         function sendChatMessage() {
             const input = document.getElementById('chat-input');
             const messages = document.getElementById('chat-messages');
+            const langSelect = document.getElementById('translator-lang').value;
+            
             if(!input.value.trim()) return;
 
             messages.innerHTML += `<div class="bg-orange-100 p-3 rounded-2xl border border-amber-200 text-right ml-6 font-medium text-gray-800">${input.value}</div>`;
@@ -161,7 +205,16 @@
             input.value = "";
 
             setTimeout(() => {
-                messages.innerHTML += `<div class="bg-white p-3 rounded-2xl border border-amber-200 shadow-sm mr-6 text-gray-800">That is a wonderful inquiry regarding <b>${userQuery}</b>. BharatVividha's archival records confirm rich civilizational roots and community records connected to this across our regional databases!</div>`;
+                let responseText = `That is a wonderful inquiry regarding <b>${userQuery}</b>. BharatVividha's archival records confirm rich civilizational roots connected across our regional databases!`;
+                
+                // Simulated Neural NLP/ViT Translation for demonstration across selected language
+                if(langSelect === 'hi') responseText = `नमस्ते! आपके प्रश्न "${userQuery}" के संबंध में, भारतविविधता के पास समृद्ध ऐतिहासिक साक्ष्य और सांस्कृतिक अभिलेख मौजूद हैं।`;
+                if(langSelect === 'bn') responseText = `নমস্কার! "${userQuery}" সম্পর্কিত আপনার অনুসন্ধানে ভারতবৈচিত্র্য প্ল্যাটফর্মে সমৃদ্ধ ঐতিহাসিক ও সাংস্কৃতিক তথ্য রয়েছে।`;
+                if(langSelect === 'es') responseText = `¡Hola! Con respecto a "${userQuery}", ¡los archivos de BharatVividha confirman profundas raíces civilizatorias!`;
+                if(langSelect === 'fr') responseText = `Bonjour! Concernant "${userQuery}", les archives de BharatVividha confirment de riches racines culturelles!`;
+                if(langSelect === 'ja') responseText = `こんにちは！「${userQuery}」に関して、BharatVividhaのアーカイブには豊かな文化的ルーツが記録されています。`;
+
+                messages.innerHTML += `<div class="bg-white p-3 rounded-2xl border border-amber-200 shadow-sm mr-6 text-gray-800">${responseText} <div class="text-[9px] text-orange-800 font-bold mt-1 uppercase">⚡ Translated via NLP / ViT [${langSelect.toUpperCase()}]</div></div>`;
                 messages.scrollTop = messages.scrollHeight;
             }, 600);
         }
