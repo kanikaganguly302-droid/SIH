@@ -36,7 +36,7 @@
         <div class="text-center">
             <span class="bg-amber-100 text-amber-900 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider">The Last Voice Archive</span>
             <h1 class="text-4xl font-extrabold mt-3 mb-2" style="color: #9a3412;">The Oral Memory of India</h1>
-            <p class="text-gray-700 max-w-2xl mx-auto">Not just history written by institutions. Listen to grassroots community recordings, traditional village recipes, songs, and folklore told directly by elders across all 22 states.</p>
+            <p class="text-gray-700 max-w-2xl mx-auto">Listen to grassroots community recordings, folk songs, traditional recipes, and village memories spoken out loud by elders across all 22 states.</p>
         </div>
 
         <!-- Interactive Selector Box -->
@@ -69,48 +69,45 @@
                 </select>
             </div>
 
-            <button onclick="playOralMemory()" class="w-full py-4 bg-orange-800 text-white rounded-2xl font-bold text-lg hover:bg-orange-900 transition shadow-lg tracking-wide">
-                Listen to Elder Oral Record
-            </button>
+            <div class="flex gap-4">
+                <button onclick="playRealVoice()" class="flex-1 py-4 bg-orange-800 text-white rounded-2xl font-bold text-lg hover:bg-orange-900 transition shadow-lg tracking-wide">
+                    🔊 Speak Oral Record Out Loud
+                </button>
+                <button onclick="stopVoice()" class="px-6 py-4 bg-gray-300 text-gray-800 rounded-2xl font-bold text-lg hover:bg-gray-400 transition">
+                    ⏹ Stop
+                </button>
+            </div>
         </div>
 
         <!-- Result Display Box -->
         <div id="oral-result" class="bg-white p-8 rounded-3xl border-2 border-amber-200 shadow-xl space-y-4">
-            <h3 class="text-2xl font-bold text-orange-900">Select a state above to tune into the oral archive.</h3>
-            <p class="text-gray-600">Hear stories, recipes, and village memories passed down through generations.</p>
+            <h3 class="text-2xl font-bold text-orange-900">Select a state above and click speak to hear the voice.</h3>
+            <p class="text-gray-600">Your device will read the elder's oral account aloud.</p>
         </div>
     </main>
 
-    <!-- JavaScript Logic -->
+    <!-- JavaScript Real Speech Engine -->
     <script>
         const oralDatabase = {
             bengal: {
                 title: "West Bengal (Malda & Pingla Folk Archive)",
-                contributor: "Anima Bala (Age 68, Folk Scroll Artist & Storyteller)",
-                language: "Bengali (Regional Dialect)",
-                audioLabel: "Audio Recording Active: Playing Baul melody and Patua narration...",
-                transcript: `"This is how my grandmother used to mix natural stone colors for our scrolls. We didn't buy colors from shops; we burnt rice husks for black and used turmeric leaves for yellow. When the monsoon arrived over the delta, our village would gather by the mud walls to sing ballads of the river."`
+                contributor: "Anima Bala (Age 68, Folk Scroll Artist)",
+                transcript: "This is how my grandmother used to mix natural stone colors for our scrolls. We didn't buy colors from shops; we burnt rice husks for black and used turmeric leaves for yellow. When the monsoon arrived over the delta, our village would gather by the mud walls to sing ballads of the river."
             },
             assam: {
                 title: "Assam (Brahmaputra Valley Oral Archive)",
-                contributor: "Bhaben Hazarika (Age 74, Traditional Handloom Custodian)",
-                language: "Assamese",
-                audioLabel: "Audio Recording Active: Playing Bihu harvest song & loom rhythm...",
-                transcript: `"In our village, every motif woven into the Muga silk tells a story of the river currents and the migratory birds. My mother taught me that the loom is an altar where patience becomes cloth."`
+                contributor: "Bhaben Hazarika (Age 74, Traditional Weaver)",
+                transcript: "In our village, every motif woven into the Muga silk tells a story of the river currents and the migratory birds. My mother taught me that the loom is an altar where patience becomes cloth."
             },
             rajasthan: {
                 title: "Rajasthan (Thar Desert Oral Archive)",
-                contributor: "Kesar Devi (Age 71, Folk Musician & Desert Historian)",
-                language: "Marwari",
-                audioLabel: "Audio Recording Active: Playing Manganiyar folk melody...",
-                transcript: `"When the wells ran dry in summer, our elders sang rain invocations that echoed across the sand dunes. Water was never just water; it was life preserved in stone stepwells."`
+                contributor: "Kesar Devi (Age 71, Folk Musician)",
+                transcript: "When the wells ran dry in summer, our elders sang rain invocations that echoed across the sand dunes. Water was never just water; it was life preserved in stone stepwells."
             },
             kerala: {
                 title: "Kerala (Malabar Coast Oral Archive)",
                 contributor: "Krishnan Nair (Age 80, Traditional Herbalist)",
-                language: "Malayalam",
-                audioLabel: "Audio Recording Active: Playing traditional ritual chants...",
-                transcript: `"The forest teaches you its secrets only if you listen in silence. My grandfather knew every medicinal root hidden beneath the monsoon canopy along the Western Ghats."`
+                transcript: "The forest teaches you its secrets only if you listen in silence. My grandfather knew every medicinal root hidden beneath the monsoon canopy along the Western Ghats."
             }
         };
 
@@ -123,38 +120,50 @@
             tripura: "Tripura", "uttar-pradesh": "Uttar Pradesh"
         };
 
-        function playOralMemory() {
+        function playRealVoice() {
             const stateKey = document.getElementById('oral-state').value;
             const resultBox = document.getElementById('oral-result');
 
             const data = oralDatabase[stateKey] || {
                 title: `${stateLabels[stateKey] || 'Regional'} Community Oral Archive`,
                 contributor: "Village Elder & Traditional Custodian",
-                language: "Local Regional Dialect",
-                audioLabel: "Audio Recording Active: Streaming verified oral history...",
-                transcript: `"Our traditions were never written in heavy books; they were spoken around evening hearths, sung during harvest festivals, and passed down as songs to keep our community connected across generations."`
+                transcript: "Our traditions were never written in heavy books; they were spoken around evening hearths and sung during harvest festivals to keep our community connected across generations."
             };
 
+            // Display on screen
             resultBox.innerHTML = `
                 <div class="space-y-4">
                     <div class="flex justify-between items-center border-b border-amber-200 pb-3">
                         <h3 class="text-2xl font-bold text-orange-900">${data.title}</h3>
-                        <span class="bg-orange-100 text-orange-900 px-3 py-1 rounded-full text-xs font-bold uppercase animate-pulse">🔊 ${data.audioLabel}</span>
+                        <span class="bg-orange-100 text-orange-900 px-3 py-1 rounded-full text-xs font-bold uppercase animate-pulse">🔊 Speaking Aloud...</span>
                     </div>
-                    <div class="grid md:grid-cols-2 gap-4 text-sm bg-amber-50 p-4 rounded-2xl border border-amber-200">
-                        <div><strong>Contributor:</strong> ${data.contributor}</div>
-                        <div><strong>Language / Dialect:</strong> ${data.language}</div>
+                    <div class="text-sm bg-amber-50 p-4 rounded-2xl border border-amber-200">
+                        <strong>Contributor:</strong> ${data.contributor}
                     </div>
                     <div class="p-5 bg-white rounded-2xl border border-amber-200 shadow-sm">
-                        <strong class="text-orange-900 block mb-2">🗣️ Recorded Transcript:</strong>
+                        <strong class="text-orange-900 block mb-2">🗣️ Live Audio Transcript:</strong>
                         <p class="text-gray-700 italic leading-relaxed text-base">${data.transcript}</p>
                     </div>
-                    <p class="text-xs text-amber-800 italic">✓ Stored in the permanent Digital Oral Memory of India repository.</p>
                 </div>
             `;
+
+            // Trigger Browser Speech Synthesis API to actually speak out loud!
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel(); // Stop any previous speech
+                const utterance = new SpeechSynthesisUtterance(data.transcript);
+                utterance.rate = 0.95; // Natural reading speed
+                utterance.pitch = 1.0;
+                window.speechSynthesis.speak(utterance);
+            } else {
+                alert("Speech synthesis is not supported on this browser.");
+            }
         }
 
-        window.onload = playOralMemory;
+        function stopVoice() {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+            }
+        }
     </script>
 </body>
 </html>
