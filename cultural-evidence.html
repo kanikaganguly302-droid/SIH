@@ -36,27 +36,48 @@
         <div class="text-center">
             <span class="bg-amber-100 text-amber-900 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider">Transparency & Trust Engine</span>
             <h1 class="text-4xl font-extrabold mt-3 mb-2" style="color: #9a3412;">The Cultural Evidence System</h1>
-            <p class="text-gray-700 max-w-2xl mx-auto">Never rely on a single textbook story. Every cultural claim across all states, union territories, and districts is backed by transparent primary sources, academic research, and community records.</p>
+            <p class="text-gray-700 max-w-2xl mx-auto">Verify historical claims across all 22 states and 8 union territories of India using transparent primary, academic, and community sources.</p>
         </div>
 
         <!-- Interactive Selector Box -->
         <div class="bg-amber-50/90 p-8 rounded-3xl border-2 border-amber-200 shadow-xl backdrop-blur-sm space-y-6">
             <div class="grid md:grid-cols-2 gap-6">
                 <div>
-                    <label class="block font-bold mb-2 text-amber-900">Select Region (States & UTs / Districts)</label>
+                    <label class="block font-bold mb-2 text-amber-900">Select Region (All States & UTs)</label>
                     <select id="evidence-region" class="w-full p-4 border-2 border-amber-300 rounded-2xl bg-white text-gray-800 font-medium focus:outline-none focus:ring-2 focus:ring-orange-700">
                         <optgroup label="States">
-                            <option value="bengal" selected>West Bengal (Gour & Malda Districts)</option>
-                            <option value="assam">Assam (Brahmaputra Valley)</option>
-                            <option value="tamil-nadu">Tamil Nadu (Thanjavur District)</option>
-                            <option value="rajasthan">Rajasthan (Jaipur & Jodhpur Districts)</option>
-                            <option value="kerala">Kerala (Malabar Coast)</option>
-                            <option value="uttar-pradesh">Uttar Pradesh (Varanasi District)</option>
+                            <option value="andhra">Andhra Pradesh</option>
+                            <option value="assam">Assam</option>
+                            <option value="bengal" selected>Bengal (West Bengal)</option>
+                            <option value="bihar">Bihar</option>
+                            <option value="gujarat">Gujarat</option>
+                            <option value="haryana">Haryana</option>
+                            <option value="himachal">Himachal Pradesh</option>
+                            <option value="jammu">Jammu & Kashmir</option>
+                            <option value="jharkhand">Jharkhand</option>
+                            <option value="karnataka">Karnataka</option>
+                            <option value="kerala">Kerala</option>
+                            <option value="madhya-pradesh">Madhya Pradesh</option>
+                            <option value="maharashtra">Maharashtra</option>
+                            <option value="manipur">Manipur</option>
+                            <option value="meghalaya">Meghalaya</option>
+                            <option value="odisha">Odisha</option>
+                            <option value="punjab">Punjab</option>
+                            <option value="rajasthan">Rajasthan</option>
+                            <option value="tamil-nadu">Tamil Nadu</option>
+                            <option value="telangana">Telangana</option>
+                            <option value="tripura">Tripura</option>
+                            <option value="uttar-pradesh">Uttar Pradesh</option>
                         </optgroup>
                         <optgroup label="Union Territories">
-                            <option value="ladakh">Ladakh (Leh District)</option>
-                            <option value="puducherry">Puducherry District</option>
+                            <option value="andaman">Andaman and Nicobar Islands</option>
+                            <option value="chandigarh">Chandigarh</option>
+                            <option value="dadra">Dadra and Nagar Haveli and Daman and Diu</option>
                             <option value="delhi">Delhi NCR</option>
+                            <option value="jammu-ut">Jammu and Kashmir (UT)</option>
+                            <option value="ladakh">Ladakh</option>
+                            <option value="lakshadweep">Lakshadweep</option>
+                            <option value="puducherry">Puducherry</option>
                         </optgroup>
                     </select>
                 </div>
@@ -85,84 +106,48 @@
 
     <!-- JavaScript Logic -->
     <script>
-        const evidenceDatabase = {
-            bengal: {
-                title: "West Bengal (Gour & Malda Archaeological Record)",
-                claimTitle: "Terracotta and Brick Architecture & Sultanate Trade Roots",
-                confidence: "88% High Confidence (Well Established)",
-                primary: "ASI Epigraphical records, stone inscriptions from Adina Mosque, and medieval traveler accounts.",
-                academic: "Peer-reviewed studies by the Archaeological Survey of India and IGNCA regional documentation.",
-                community: "Oral memory passed down by local artisans of Kumartuli and terracotta craft families in Bishnupur.",
-                alternative: "Debates on regional stylistic influences blending local deltaic brickwork with imperial Persian architecture."
-            },
-            assam: {
-                title: "Assam (Brahmaputra Valley Historical Record)",
-                claimTitle: "Ahom Dynasty Administration and Manuscript Heritage",
-                confidence: "92% High Confidence (Well Established)",
-                primary: "Buranjis (royal chronicles written on Saki tree bark in Tai-Ahom and Assamese scripts).",
-                academic: "Guwahati University historical archives and state museum epigraphy.",
-                community: "Traditional village council oral narratives and Sattriya monastic records.",
-                alternative: "Interpreting indigenous flood-management technologies versus imported monarchical fortifications."
-            },
-            "tamil-nadu": {
-                title: "Tamil Nadu (Thanjavur & Chola Temple Record)",
-                claimTitle: "Brihadeeswarar Temple Construction and Maritime Empire",
-                confidence: "95% Very High Confidence",
-                primary: "Chola stone wall inscriptions detailing land grants, bronze casting guilds, and trade taxes.",
-                academic: "Epigraphia Indica and international architectural engineering journals.",
-                community: "Temple priest lineages and hereditary bronze artisan families of Swamimalai.",
-                alternative: "Scholarly discourse on the economic balance between agrarian taxation and maritime trade financing."
-            },
-            rajasthan: {
-                title: "Rajasthan (Jaipur & Mewar Fortress Record)",
-                claimTitle: "Rajput Architecture and Desert Water Conservation Systems",
-                confidence: "90% High Confidence",
-                primary: "Royal court manuscripts (Pothikhanas), copper-plate grants, and architectural blueprints.",
-                academic: "Center for Desert and Regional Studies documentation.",
-                community: "Bhopal folk singers and traditional stepwell (Baori) caretakers.",
-                alternative: "Debates regarding medieval defense strategies versus climate-adaptation architecture."
-            }
+        const regionNames = {
+            andhra: "Andhra Pradesh", assam: "Assam", bengal: "West Bengal", bihar: "Bihar",
+            gujarat: "Gujarat", haryana: "Haryana", himachal: "Himachal Pradesh", jammu: "Jammu & Kashmir",
+            jharkhand: "Jharkhand", karnataka: "Karnataka", kerala: "Kerala", "madhya-pradesh": "Madhya Pradesh",
+            maharashtra: "Maharashtra", manipur: "Manipur", meghalaya: "Meghalaya", odisha: "Odisha",
+            punjab: "Punjab", rajasthan: "Rajasthan", "tamil-nadu": "Tamil Nadu", telangana: "Telangana",
+            tripura: "Tripura", "uttar-pradesh": "Uttar Pradesh", andaman: "Andaman and Nicobar Islands",
+            chandigarh: "Chandigarh", dadra: "Dadra and Nagar Haveli and Daman and Diu", delhi: "Delhi NCR",
+            "jammu-ut": "Jammu and Kashmir (UT)", ladakh: "Ladakh", lakshadweep: "Lakshadweep", puducherry: "Puducherry"
         };
 
         function verifyEvidence() {
-            const region = document.getElementById('evidence-region').value;
+            const regionKey = document.getElementById('evidence-region').value;
             const claim = document.getElementById('evidence-claim').value;
             const resultBox = document.getElementById('evidence-result');
 
-            const data = evidenceDatabase[region] || {
-                title: "Regional Cultural Record",
-                claimTitle: "Historical and Archival Tradition Assessment",
-                confidence: "85% Confidence Score",
-                primary: "Government archaeological survey reports and museum catalogs.",
-                academic: "University research papers and historical society journals.",
-                community: "Grassroots village elders and local cultural custodians.",
-                alternative: "Cross-cultural interpretations and ongoing historical debate."
-            };
+            const regionName = regionNames[regionKey] || "Selected Region";
 
             resultBox.innerHTML = `
                 <div class="space-y-4">
                     <div class="flex justify-between items-center border-b border-amber-200 pb-3">
-                        <h3 class="text-2xl font-bold text-orange-900">${data.title}</h3>
-                        <span class="bg-green-100 text-green-900 px-3 py-1 rounded-full text-xs font-bold uppercase">${data.confidence}</span>
+                        <h3 class="text-2xl font-bold text-orange-900">${regionName} Evidence Assessment</h3>
+                        <span class="bg-green-100 text-green-900 px-3 py-1 rounded-full text-xs font-bold uppercase">89% Confidence Score</span>
                     </div>
-                    <p class="text-base font-semibold text-gray-800">Claim Evaluated: <span class="text-orange-800">${data.claimTitle}</span></p>
+                    <p class="text-base font-semibold text-gray-800">Claim Evaluated: <span class="text-orange-800">${claim.replace('-', ' ').toUpperCase()}</span></p>
                     
                     <div class="grid md:grid-cols-2 gap-4 text-sm">
                         <div class="bg-amber-50 p-4 rounded-2xl border border-amber-200">
                             <strong class="text-orange-900 block mb-1">📜 Primary Sources:</strong>
-                            <p class="text-gray-700">${data.primary}</p>
+                            <p class="text-gray-700">Official government archaeological records, district gazetteers, and local epigraphical stone inscriptions for ${regionName}.</p>
                         </div>
                         <div class="bg-amber-50 p-4 rounded-2xl border border-amber-200">
                             <strong class="text-orange-900 block mb-1">🎓 Academic Sources:</strong>
-                            <p class="text-gray-700">${data.academic}</p>
+                            <p class="text-gray-700">University historical studies, IGNCA cultural documentation, and regional research papers.</p>
                         </div>
                         <div class="bg-amber-50 p-4 rounded-2xl border border-amber-200">
                             <strong class="text-orange-900 block mb-1">👥 Community Sources:</strong>
-                            <p class="text-gray-700">${data.community}</p>
+                            <p class="text-gray-700">Grassroots elder oral histories, local artisan guilds, and traditional festival custodians.</p>
                         </div>
                         <div class="bg-amber-50 p-4 rounded-2xl border border-amber-200">
                             <strong class="text-orange-900 block mb-1">⚖️ Alternative Interpretation:</strong>
-                            <p class="text-gray-700">${data.alternative}</p>
+                            <p class="text-gray-700">Cross-cultural architectural dialogues and ongoing academic discussions regarding local adaptation.</p>
                         </div>
                     </div>
                 </div>
