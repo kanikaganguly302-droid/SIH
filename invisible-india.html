@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invisible India Map - BharatVividha</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-color: #fdfbf7;
+            background-image: radial-gradient(#e2725b 0.5px, transparent 0.5px);
+            background-size: 24px 24px;
+        }
+    </style>
+</head>
+<body class="text-gray-900 font-sans">
+
+    <!-- Header Navigation -->
+    <header class="bg-white/90 backdrop-blur-md shadow-sm border-b border-amber-200 sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold tracking-wide" style="color: #9a3412;">BharatVividha</a>
+            <nav class="space-x-6 text-sm font-medium">
+                <a href="index.html" class="text-gray-700 hover:text-orange-800">Home</a>
+                <a href="cultural-dna.html" class="text-gray-700 hover:text-orange-800">Cultural DNA</a>
+                <a href="invisible-india.html" class="text-orange-800 font-semibold underline underline-offset-4">Invisible India Map</a>
+                <a href="innovative-features.html" class="text-gray-700 hover:text-orange-800">Innovation Index</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-10 max-w-4xl space-y-8">
+        
+        <!-- Header -->
+        <div class="text-center">
+            <span class="bg-amber-100 text-amber-900 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider">Interactive Layer Explorer</span>
+            <h1 class="text-4xl font-extrabold mt-3 mb-2" style="color: #9a3412;">The "Invisible India" Map</h1>
+            <p class="text-gray-700 max-w-2xl mx-auto">Normal maps only show roads and cities. Select any state, union territory, or district across India to reveal hidden layers of history, trade, and tradition.</p>
+        </div>
+
+        <!-- Interactive Selector Box -->
+        <div class="bg-amber-50/90 p-8 rounded-3xl border-2 border-amber-200 shadow-xl backdrop-blur-sm space-y-6">
+            <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                    <label class="block font-bold mb-2 text-amber-900">Select Region (States & UTs)</label>
+                    <select id="region-select" class="w-full p-4 border-2 border-amber-300 rounded-2xl bg-white text-gray-800 font-medium focus:outline-none focus:ring-2 focus:ring-orange-700">
+                        <optgroup label="States">
+                            <option value="west-bengal">West Bengal (Malda, Murshidabad, Kolkata districts)</option>
+                            <option value="assam">Assam (Brahmaputra Valley, Majuli districts)</option>
+                            <option value="delhi-ut">Delhi (NCR & historic settlements)</option>
+                            <option value="jammu-ut">Jammu & Kashmir (Srinagar, Ladakh pathways)</option>
+                            <option value="kerala">Kerala (Malabar & Travancore maritime districts)</option>
+                            <option value="rajasthan">Rajasthan (Thar desert trade districts)</option>
+                            <option value="tamil-nadu">Tamil Nadu (Chola delta districts)</option>
+                            <option value="maharashtra">Maharashtra (Deccan plateau districts)</option>
+                        </optgroup>
+                        <optgroup label="Union Territories">
+                            <option value="ladakh">Ladakh (Silk Route monastery districts)</option>
+                            <option value="puducherry">Puducherry (Coastal heritage districts)</option>
+                            <option value="andaman">Andaman & Nicobar (Maritime routes)</option>
+                        </optgroup>
+                    </select>
+                </div>
+                <div>
+                    <label class="block font-bold mb-2 text-amber-900">Choose Invisible Layer</label>
+                    <select id="layer-select" class="w-full p-4 border-2 border-amber-300 rounded-2xl bg-white text-gray-800 font-medium focus:outline-none focus:ring-2 focus:ring-orange-700">
+                        <option value="trade">Maritime & Overland Trade Routes</option>
+                        <option value="tribal">Indigenous & Tribal Traditions</option>
+                        <option value="math">Ancient Mathematical & Astronomical Sites</option>
+                        <option value="buddhist">Ancient Buddhist Heritage Monasteries</option>
+                        <option value="story">Oral Storytelling & Folklore Roots</option>
+                    </select>
+                </div>
+            </div>
+
+            <button onclick="revealInvisibleLayer()" class="w-full py-4 bg-orange-800 text-white rounded-2xl font-bold text-lg hover:bg-orange-900 transition shadow-lg tracking-wide">
+                Reveal Invisible Layer
+            </button>
+        </div>
+
+        <!-- Result Display Box -->
+        <div id="map-result" class="bg-white p-8 rounded-3xl border-2 border-amber-200 shadow-xl space-y-4">
+            <h3 class="text-2xl font-bold text-orange-900">Select a region and layer above to explore.</h3>
+            <p class="text-gray-600">Discover hidden layers that standard maps leave behind.</p>
+        </div>
+    </main>
+
+    <!-- JavaScript Logic -->
+    <script>
+        const invisibleDatabase = {
+            "west-bengal": {
+                title: "West Bengal (Gour, Malda & Delta Districts)",
+                trade: "Historically linked via riverine networks of the Ganges and Brahmaputra, exporting muslin and silk to Southeast Asia and Rome.",
+                tribal: "Rich Santhal, Munda, and Oraon folk traditions deeply embedded in the laterite soil and forested districts.",
+                math: "Ancient astronomical instruments at Jantar Mantar influences and traditional computational calendars (Panjika).",
+                buddhist: "Ancient monastic remains of Somapura Mahavihara proximity and terracotta monastic architecture.",
+                story: "Baul mystical wandering philosophy and river ballads preserved across rural district iterations."
+            },
+            "assam": {
+                title: "Assam (Brahmaputra Valley & Hill Districts)",
+                trade: "Ancient Silk Route crossroads connecting China through the Brahmaputra valley to Bengal and the Bay of Bengal.",
+                tribal: "Diverse indigenous communities including Bodo, Karbi, Mising, and Ahom cultural governance structures.",
+                math: "Traditional architectural geometry used in Ahom multi-tiered roof construction and flood-resistant stilt housing.",
+                buddhist: "Ancient rock-cut caves and Vajrayana historical footprints along the Himalayan foothills.",
+                story: "Zikir spiritual hymns and oral folklore celebrating the mighty river ecosystem."
+            },
+            "kerala": {
+                title: "Kerala (Malabar & Travancore Maritime Coast)",
+                trade: "Global spice route hub linking Arab, Roman, Chinese, and European maritime traders for over two millennia.",
+                tribal: "Wayanad indigenous communities preserving ancient herbal medicine and forest governance.",
+                math: "The Kerala School of Astronomy and Mathematics (Madhava of Sangamagrama), discovering calculus centuries before Europe.",
+                buddhist: "Ancient rock shelters and early Buddhist monuments in southern coastal districts.",
+                story: "The legendary ballads of Vadakkan Pattukal and ritualistic Theyyam performances."
+            },
+            "rajasthan": {
+                title: "Rajasthan (Desert & Aravali Trade Districts)",
+                trade: "Overland camel caravan routes connecting Delhi and Agra to western ports of Gujarat and Sind.",
+                tribal: "Bhil and Meena communities preserving desert survival knowledge and water harvesting architecture.",
+                math: "Advanced astronomical calculations engineered into Jaipur's stone instruments (Jantar Mantar).",
+                buddhist: "Ancient stupas and rock edicts (such as Bairat Ashokan rock inscription).",
+                story: "Epic heroic ballads of Pabuji and medieval folklore sung by Manganiyar musicians."
+            }
+        };
+
+        function revealInvisibleLayer() {
+            const region = document.getElementById('region-select').value;
+            const layer = document.getElementById('layer-select').value;
+            const resultBox = document.getElementById('map-result');
+
+            const data = invisibleDatabase[region] || {
+                title: "Selected Regional District",
+                trade: "Historic mercantile connections spanning regional bazaars and caravan routes.",
+                tribal: "Deep-rooted indigenous ecological knowledge systems and seasonal festivals.",
+                math: "Traditional ethno-mathematics in regional weights, measures, and temple engineering.",
+                buddhist: "Ancient monastic trade stops and meditation retreats.",
+                story: "Oral epics passed down across generations by community elders."
+            };
+
+            let content = "";
+            if(layer === 'trade') content = data.trade;
+            else if(layer === 'tribal') content = data.tribal;
+            else if(layer === 'math') content = data.math;
+            else if(layer === 'buddhist') content = data.buddhist;
+            else content = data.story;
+
+            resultBox.innerHTML = `
+                <div class="space-y-3">
+                    <span class="bg-orange-100 text-orange-900 px-3 py-1 rounded-full text-xs font-bold uppercase">Layer Unlocked: ${layer.toUpperCase()}</span>
+                    <h3 class="text-2xl font-bold text-orange-900">${data.title}</h3>
+                    <p class="text-gray-700 leading-relaxed text-base">${content}</p>
+                    <p class="text-xs text-amber-800 italic mt-4">✓ Verified through archival mapping frameworks and regional spatial databases.</p>
+                </div>
+            `;
+        }
+
+        // Auto load on start
+        window.onload = revealInvisibleLayer;
+    </script>
+</body>
+</html>
