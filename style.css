@@ -344,6 +344,36 @@
 .leaflet-popup-content .site-btn:hover {
     background-color: #7c2d12;
 }
+/* Custom popup styling for BharatVividha map */
+.leaflet-popup-content-wrapper {
+    background: #fffbeb !important;
+    color: #1f2937 !important;
+    border-radius: 12px !important;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1) !important;
+    padding: 4px;
+}
+
+.leaflet-popup-tip {
+    background: #fffbeb !important;
+}
+
+.leaflet-popup-content {
+    margin: 12px 16px !important;
+    line-height: 1.5;
+}
+
+.leaflet-popup-content h3 {
+    font-size: 15px;
+    font-weight: 600;
+    color: #9a3412;
+    margin-bottom: 4px;
+}
+
+.leaflet-popup-content p {
+    font-size: 13px;
+    color: #4b5563;
+    margin: 0;
+}
   /* ---------- FINDER (Monuments & Sites lookup) ---------- */
   .finder-panel{
     background: var(--cream);
