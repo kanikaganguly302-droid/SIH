@@ -35,8 +35,8 @@
         <!-- Header -->
         <div class="text-center">
             <span class="bg-amber-100 text-amber-900 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider">Interactive Signature Feature</span>
-            <h1 class="text-4xl font-extrabold mt-3 mb-2" style="color: #9a3412;">The "Cultural DNA" of India</h1>
-            <p class="text-gray-700 max-w-2xl mx-auto">Instead of asking a generic question like "What is Rajasthan?", compare regions side-by-side to discover what connects them and what makes them culturally unique.</p>
+            <h1 class="text-4xl font-extrabold mt-3 mb-2" style="color: #9a3412;">The "Cultural DNA" Matrix</h1>
+            <p class="text-gray-700 max-w-2xl mx-auto">Compare any two of India's diverse regional cultural profiles side-by-side to discover similarities, differences, and historical connections[cite: 12].</p>
         </div>
 
         <!-- Interactive Matcher Box -->
@@ -46,9 +46,27 @@
                     <label class="block font-bold mb-2 text-amber-900">Select Region A</label>
                     <select id="region-a" class="w-full p-4 border-2 border-amber-300 rounded-2xl bg-white text-gray-800 font-medium focus:outline-none focus:ring-2 focus:ring-orange-700">
                         <option value="bengal">Bengal</option>
-                        <option value="rajasthan">Rajasthan</option>
-                        <option value="kerala">Kerala</option>
                         <option value="assam">Assam</option>
+                        <option value="andhra">Andhra Pradesh</option>
+                        <option value="bihar">Bihar</option>
+                        <option value="gujarat">Gujarat</option>
+                        <option value="haryana">Haryana</option>
+                        <option value="himachal">Himachal Pradesh</option>
+                        <option value="jammu">Jammu & Kashmir</option>
+                        <option value="jharkhand">Jharkhand</option>
+                        <option value="karnataka">Karnataka</option>
+                        <option value="kerala">Kerala</option>
+                        <option value="madhya-pradesh">Madhya Pradesh</option>
+                        <option value="maharashtra">Maharashtra</option>
+                        <option value="manipur">Manipur</option>
+                        <option value="meghalaya">Meghalaya</option>
+                        <option value="odisha">Odisha</option>
+                        <option value="punjab">Punjab</option>
+                        <option value="rajasthan">Rajasthan</option>
+                        <option value="tamil-nadu">Tamil Nadu</option>
+                        <option value="telangana">Telangana</option>
+                        <option value="tripura">Tripura</option>
+                        <option value="uttar-pradesh">Uttar Pradesh</option>
                     </select>
                 </div>
                 <div>
@@ -56,8 +74,26 @@
                     <select id="region-b" class="w-full p-4 border-2 border-amber-300 rounded-2xl bg-white text-gray-800 font-medium focus:outline-none focus:ring-2 focus:ring-orange-700">
                         <option value="assam">Assam</option>
                         <option value="bengal">Bengal</option>
+                        <option value="andhra">Andhra Pradesh</option>
+                        <option value="bihar">Bihar</option>
+                        <option value="gujarat">Gujarat</option>
+                        <option value="haryana">Haryana</option>
+                        <option value="himachal">Himachal Pradesh</option>
+                        <option value="jammu">Jammu & Kashmir</option>
+                        <option value="jharkhand">Jharkhand</option>
+                        <option value="karnataka">Karnataka</option>
+                        <option value="kerala">Kerala</option>
+                        <option value="madhya-pradesh">Madhya Pradesh</option>
+                        <option value="maharashtra">Maharashtra</option>
+                        <option value="manipur">Manipur</option>
+                        <option value="meghalaya">Meghalaya</option>
+                        <option value="odisha">Odisha</option>
+                        <option value="punjab">Punjab</option>
                         <option value="rajasthan">Rajasthan</option>
                         <option value="tamil-nadu">Tamil Nadu</option>
+                        <option value="telangana">Telangana</option>
+                        <option value="tripura">Tripura</option>
+                        <option value="uttar-pradesh" selected>Uttar Pradesh</option>
                     </select>
                 </div>
             </div>
@@ -68,64 +104,34 @@
         </div>
 
         <!-- Comparison Result Display -->
-        <div id="dna-result" class="grid md:grid-cols-2 gap-6">
-            <!-- Dynamic output populates here -->
-        </div>
+        <div id="dna-result" class="grid md:grid-cols-2 gap-6"></div>
     </main>
 
     <!-- JavaScript Logic -->
     <script>
         const culturalProfiles = {
-            bengal: {
-                name: "Bengal",
-                language: "Bengali",
-                food: "Rice, Fish, Mustard",
-                art: "Pattachitra, Kalighat",
-                literature: "Tagore, Bankim",
-                music: "Baul, Rabindra Sangeet",
-                climate: "Monsoon, Delta",
-                occupation: "Agriculture, Fishing, Trade"
-            },
-            rajasthan: {
-                name: "Rajasthan",
-                language: "Marwari, Hindi",
-                food: "Dal Baati Churma, Bajra",
-                art: "Miniature painting, Bandhani",
-                literature: "Meera Bai folk epics",
-                music: "Maand, Manganiyar folk",
-                climate: "Arid desert, Extreme heat",
-                occupation: "Animal husbandry, Handicrafts, Tourism"
-            },
-            kerala: {
-                name: "Kerala",
-                language: "Malayalam",
-                food: "Rice, Coconut, Seafood",
-                art: "Kathakali, Mural painting",
-                literature: "Kumaran Asan, Vallathol",
-                music: "Sopana Sangeetham, Chenda melam",
-                climate: "Tropical monsoon, Coastal",
-                occupation: "Spices cultivation, Fishing, Coir trade"
-            },
-            assam: {
-                name: "Assam",
-                language: "Assamese",
-                food: "Rice, Bamboo shoot, Fish",
-                art: "Muga silk weaving, Terracotta",
-                literature: "Lakshminath Bezbaroa",
-                music: "Bihu songs, Zikir",
-                climate: "Subtropical, Brahmaputra valley",
-                occupation: "Tea cultivation, Agriculture, Silk production"
-            },
-            "tamil-nadu": {
-                name: "Tamil Nadu",
-                language: "Tamil",
-                food: "Rice, Sambar, Chettinad spices",
-                art: "Tanjore painting, Bronze casting",
-                literature: "Sangam literature, Thirukkural",
-                music: "Carnatic music, Bharatanatyam rhythm",
-                climate: "Tropical, Monsoonal",
-                occupation: "Textile weaving, Temple architecture, IT/Trade"
-            }
+            bengal: { name: "Bengal", language: "Bengali", food: "Rice, Fish, Mustard", art: "Pattachitra, Kalighat", literature: "Tagore, Bankim", music: "Baul, Rabindra Sangeet", climate: "Monsoon, Delta", occupation: "Agriculture, Fishing, Trade" },
+            assam: { name: "Assam", language: "Assamese", food: "Rice, Bamboo shoot, Fish", art: "Muga silk weaving", literature: "Lakshminath Bezbaroa", music: "Bihu folk songs", climate: "Subtropical valley", occupation: "Tea cultivation, Handlooms" },
+            andhra: { name: "Andhra Pradesh", language: "Telugu", food: "Rice, Gongura, Spicy curries", art: "Kalamkari, Kondapalli toys", literature: "Telugu classical epics", music: "Carnatic classical", climate: "Tropical, Coastal", occupation: "Agriculture, Aquaculture" },
+            bihar: { name: "Bihar", language: "Hindi, Maithili, Bhojpuri", food: "Litti Chokha, Sattu", art: "Madhubani painting", literature: "Vidyapati poetry", music: "Sohar, Bhojpuri folk", climate: "Humid subtropical", occupation: "Agriculture, Handcrafts" },
+            gujarat: { name: "Gujarat", language: "Gujarati", food: "Dhokla, Thepla, Undhiyu", art: "Bandhani, Rogan art", literature: "Narsinh Mehta", music: "Garba, Dandiya folk", climate: "Semi-arid, Coastal", occupation: "Trade, Textile, Dairying" },
+            haryana: { name: "Haryana", language: "Haryanvi, Hindi", food: "Bajra roti, Ghee, Lassi", art: "Phulkari embroidery", literature: "Surdas poetry", music: "Ragni, Haryanvi folk", climate: "Semi-arid continental", occupation: "Agriculture, Dairy farming" },
+            himachal: { name: "Himachal Pradesh", language: "Pahari, Hindi", food: "Dham, Madra", art: "Kangra miniature painting", literature: "Pahari folk tales", music: "Nati folk dance music", climate: "Alpine, Mountainous", occupation: "Horticulture, Tourism" },
+            jammu: { name: "Jammu & Kashmir", language: "Kashmiri, Dogri, Urdu", food: "Wazwan, Kahwa tea", art: "Pashmina shawls, Papier-mâché", literature: "Habba Khatoon", music: "Sufiana Kalam, Chakri", climate: "Alpine, Temperate", occupation: "Saffron farming, Handcrafts" },
+            jharkhand: { name: "Jharkhand", language: "Hindi, Santhali, Ho", food: "Chilka Roti, Rugra", art: "Sohrai and Khovar painting", literature: "Tribal folklore", music: "Jhumar, Santhali dance music", climate: "Tropical monsoon", occupation: "Mining, Forestry, Agriculture" },
+            karnataka: { name: "Karnataka", language: "Kannada", food: "Bisi Bele Bath, Ragi Mudde", art: "Mysore painting, Bronze work", literature: "Kuvempu, Vachana literature", music: "Carnatic classical", climate: "Tropical, Coastal, Plateau", occupation: "IT industry, Agriculture, Coffee" },
+            kerala: { name: "Kerala", language: "Malayalam", food: "Rice, Coconut, Sadya", art: "Kathakali, Mural painting", literature: "Kumaran Asan, Thakazhi", music: "Sopana Sangeetham", climate: "Tropical monsoon", occupation: "Spices cultivation, Fishing" },
+            "madhya-pradesh": { name: "Madhya Pradesh", language: "Hindi", food: "Poha, Dal Bafla", art: "Chanderi saree weaving, Pithora", literature: "Kalidasa classics", music: "Maheshwari folk", climate: "Subtropical", occupation: "Agriculture, Handlooms, Forestry" },
+            maharashtra: { name: "Maharashtra", language: "Marathi", food: "Puran Poli, Modak, Vada Pav", art: "Warli painting, Paithani silk", literature: "Sant Dnyaneshwar, Tukaram", music: "Lavani, Natya Sangeet", climate: "Tropical, Monsoon", occupation: "Industry, Agriculture, Commerce" },
+            manipur: { name: "Manipur", language: "Meiteilon (Manipuri)", food: "Eromba, Singju", art: "Manipuri classical dance crafts", literature: "Manipuri epics", music: "Pung Cholom, Sankirtana", climate: "Subtropical, Monsoonal", occupation: "Handlooms, Handcrafts, Agriculture" },
+            meghalaya: { name: "Meghalaya", language: "Khasi, Garo, English", food: "Jadoh, Dohneiiong", art: "Cane and bamboo craft", literature: "Oral tribal legends", music: "Khasi folk hymns", climate: "Wettest highland climate", occupation: "Agriculture, Handcrafts" },
+            odisha: { name: "Odisha", language: "Odia", food: "Pakhala, Dalma, Chhena Poda", art: "Pattachitra, Stone carving", literature: "Sarala Dasa, Fakir Mohan", music: "Odissi classical music", climate: "Tropical coastal", occupation: "Handlooms, Agriculture, Fishery" },
+            punjab: { name: "Punjab", language: "Punjabi", food: "Makki di Roti, Sarson ka Saag", art: "Phulkari, Jutti making", literature: "Waris Shah, Bulleh Shah", music: "Bhangra, Tappa folk", climate: "Continental semi-arid", occupation: "Agriculture, Dairy farming" },
+            rajasthan: { name: "Rajasthan", language: "Marwari, Hindi", food: "Dal Baati Churma, Bajra", art: "Miniature painting, Bandhani", literature: "Meera Bai folk epics", music: "Maand, Manganiyar folk", climate: "Arid desert", occupation: "Animal husbandry, Handicrafts" },
+            "tamil-nadu": { name: "Tamil Nadu", language: "Tamil", food: "Rice, Sambar, Chettinad dishes", art: "Tanjore painting, Bronze casting", literature: "Sangam literature, Thirukkural", music: "Carnatic classical", climate: "Tropical", occupation: "Textiles, Temple architecture" },
+            telangana: { name: "Telangana", language: "Telugu", food: "Hyderabadi Biryani, Jonna Roti", art: "Nirmal toys, Cherial scrolls", literature: "Bammera Potana", music: "Perini Thandavam folk", climate: "Semi-arid", occupation: "Agriculture, Handlooms, IT" },
+            tripura: { name: "Tripura", language: "Bengali, Kokborok", food: "Mui Borok, Gudok", art: "Bamboo & cane handicraft", literature: "Kokborok folk tales", music: "Tripuri tribal folk", climate: "Tropical humid", occupation: "Agriculture, Handloom weaving" },
+            "uttar-pradesh": { name: "Uttar Pradesh", language: "Hindi, Urdu", food: "Awadhi Kebabs, Banarasi Chaat", art: "Zardozi embroidery, Chikankari", literature: "Tulsidas, Kabir", music: "Thumri, Dadra, Ghazal", climate: "Humid subtropical", occupation: "Agriculture, Handcrafts, Handlooms" }
         };
 
         function compareDNA() {
@@ -143,7 +149,7 @@
 
             resultDiv.innerHTML = `
                 <div class="bg-white p-6 rounded-3xl border-2 border-amber-200 shadow-xl space-y-3">
-                    <h3 class="text-2xl font-bold text-orange-900 border-b border-amber-100 pb-2">${profileA.name} Profile</h3>
+                    <h3 class="text-2xl font-bold text-orange-900 border-b border-amber-100 pb-2">${profileA.name} DNA</h3>
                     <ul class="text-sm space-y-2 text-gray-700">
                         <li><strong>Language:</strong> ${profileA.language}</li>
                         <li><strong>Food Culture:</strong> ${profileA.food}</li>
@@ -155,7 +161,7 @@
                     </ul>
                 </div>
                 <div class="bg-white p-6 rounded-3xl border-2 border-amber-200 shadow-xl space-y-3">
-                    <h3 class="text-2xl font-bold text-orange-900 border-b border-amber-100 pb-2">${profileB.name} Profile</h3>
+                    <h3 class="text-2xl font-bold text-orange-900 border-b border-amber-100 pb-2">${profileB.name} DNA</h3>
                     <ul class="text-sm space-y-2 text-gray-700">
                         <li><strong>Language:</strong> ${profileB.language}</li>
                         <li><strong>Food Culture:</strong> ${profileB.food}</li>
@@ -168,6 +174,9 @@
                 </div>
             `;
         }
+        
+        // Auto-run comparison on load
+        window.onload = compareDNA;
     </script>
 </body>
 </html>
