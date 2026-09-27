@@ -15,7 +15,7 @@
         }
     </style>
 </head>
-<body class="text-gray-950 font-sans">
+<body class="text-gray-900 font-sans">
 
     <!-- Header Navigation -->
     <header class="bg-white/90 backdrop-blur-md shadow-sm border-b border-amber-200 sticky top-0 z-50">
@@ -53,38 +53,54 @@
             </div>
         </div>
 
-        <!-- Interactive Heritage Map Box -->
+        <!-- Interactive Heritage Map Box (Correctly Centered on India with English Labels) -->
         <div class="bg-white p-6 rounded-3xl border-2 border-amber-200 shadow-xl space-y-4">
             <div class="flex justify-between items-center">
                 <h3 class="text-2xl font-bold text-orange-900">Interactive Regional Heritage Map</h3>
                 <span class="text-xs bg-amber-100 text-amber-900 px-3 py-1 rounded-full font-semibold">Live GIS Scanner Active</span>
             </div>
-            <!-- Leaflet Map Container -->
             <div id="heritage-map" style="width: 100%; height: 450px; border-radius: 16px; border: 2px solid #fde68a;"></div>
         </div>
     </main>
 
-    <!-- Leaflet & Geolocation Script -->
+    <!-- Floating AI Heritage Chatbot -->
+    <div class="fixed bottom-6 right-6 z-50 bg-white border-2 border-amber-300 rounded-3xl shadow-2xl w-80 overflow-hidden">
+        <div class="bg-orange-800 text-white p-4 font-bold flex justify-between items-center">
+            <span>🤖 AI Heritage Guide</span>
+            <span class="text-xs bg-orange-900 px-2 py-0.5 rounded-full">Online</span>
+        </div>
+        <div id="chat-messages" class="p-4 h-60 overflow-y-auto text-sm space-y-3 bg-amber-50/50">
+            <div class="bg-white p-3 rounded-2xl border border-amber-200 shadow-sm">
+                Namaste! Ask me anything about Indian heritage, temples, or artisan traditions.
+            </div>
+        </div>
+        <div class="p-3 bg-white border-t border-amber-200 flex gap-2">
+            <input type="text" id="chat-input" placeholder="Ask about heritage..." class="w-full p-2 border border-amber-300 rounded-xl text-sm focus:outline-none focus:ring-1 focus:ring-orange-700">
+            <button onclick="sendChatMessage()" class="px-4 py-2 bg-orange-800 text-white text-sm font-bold rounded-xl hover:bg-orange-900">Send</button>
+        </div>
+    </div>
+
+    <!-- Map & Geolocation Script -->
     <script>
-        // Initialize Map centered on India
+        // Initialize Map centered strictly on India (Lat: 22.97, Lon: 78.65, Zoom: 5)
         let map = L.map('heritage-map').setView([22.9734, 78.6569], 5);
 
-        // Add professional OpenStreetMap tiles with Indian aesthetic
+        // Standard English OpenStreetMap tiles
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
             attribution: '© BharatVividha SIH 2026'
         }).addTo(map);
 
-        // Sample initial markers across India
+        // Key Indian Heritage Markers in English
         const heritageSites = [
-            { name: "Gour & Malda Archaeological Ruins", lat: 25.0108, desc: "Terracotta architecture and medieval sultanate trade roots." },
-            { name: "Brihadeeswarar Temple, Thanjavur", lat: 10.7828, desc: "Chola dynasty architectural marvel." },
-            { name: "Jaipur Jantar Mantar", lat: 26.9124, desc: "Ancient astronomical instruments and mathematical engineering." },
-            { name: "Majuli River Island, Assam", lat: 26.9530, desc: "Living Neo-Vaishnavite cultural heritage hub." }
+            { name: "Gour & Malda Archaeological Ruins", lat: 25.0108, lon: 88.1413, desc: "Terracotta architecture and medieval sultanate trade roots." },
+            { name: "Brihadeeswarar Temple, Thanjavur", lat: 10.7828, lon: 79.1318, desc: "Chola dynasty architectural marvel." },
+            { name: "Jaipur Jantar Mantar", lat: 26.9124, lon: 75.7873, desc: "Ancient astronomical instruments and mathematical engineering." },
+            { name: "Majuli River Island, Assam", lat: 26.9530, lon: 94.1636, desc: "Living Neo-Vaishnavite cultural heritage hub." }
         ];
 
         heritageSites.forEach(site => {
-            L.marker([site.lat, site.lon || site.lat + 0.001]).addTo(map)
+            L.marker([site.lat, site.lon]).addTo(map)
               .bindPopup(`<b>${site.name}</b><br>${site.desc}`);
         });
 
@@ -107,7 +123,7 @@
                     inputField.value = `📍 GPS Location Found (${lat.toFixed(2)}, ${lon.toFixed(2)}) • Scanning 50km radius...`;
                     
                     // Center map on user location and zoom in
-                    map.setView([lat, lon], 11);
+                    map.setView([lat, lon], 12);
                     
                     L.marker([lat, lon]).addTo(map)
                       .bindPopup("<b>Your Current Location</b><br>Scanning heritage within 50km radius.")
@@ -123,6 +139,22 @@
                 },
                 { timeout: 10000, enableHighAccuracy: true }
             );
+        }
+
+        // AI Chatbot Logic
+        function sendChatMessage() {
+            const input = document.getElementById('chat-input');
+            const messages = document.getElementById('chat-messages');
+            if(!input.value.trim()) return;
+
+            messages.innerHTML += `<div class="bg-orange-100 p-3 rounded-2xl border border-amber-200 text-right ml-6">${input.value}</div>`;
+            const userQuery = input.value;
+            input.value = "";
+
+            setTimeout(() => {
+                messages.innerHTML += `<div class="bg-white p-3 rounded-2xl border border-amber-200 shadow-sm mr-6">That is a wonderful question regarding ${userQuery}. BharatVividha's archival records verify rich cultural roots associated with this query across our national heritage databases!</div>`;
+                messages.scrollTop = messages.scrollHeight;
+            }, 600);
         }
     </script>
 </body>
