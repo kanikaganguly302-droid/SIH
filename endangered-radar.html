@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Endangered Culture Radar - BharatVividha</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-color: #fdfbf7;
+            background-image: radial-gradient(#e2725b 0.5px, transparent 0.5px);
+            background-size: 24px 24px;
+        }
+    </style>
+</head>
+<body class="text-gray-900 font-sans">
+
+    <!-- Header Navigation -->
+    <header class="bg-white/90 backdrop-blur-md shadow-sm border-b border-amber-200 sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold tracking-wide" style="color: #9a3412;">BharatVividha</a>
+            <nav class="space-x-6 text-sm font-medium">
+                <a href="index.html" class="text-gray-700 hover:text-orange-800">Home</a>
+                <a href="invisible-india.html" class="text-gray-700 hover:text-orange-800">Invisible India</a>
+                <a href="endangered-radar.html" class="text-orange-800 font-semibold underline underline-offset-4">Endangered Radar</a>
+                <a href="innovative-features.html" class="text-gray-700 hover:text-orange-800">Innovation Index</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-10 max-w-4xl space-y-8">
+        
+        <!-- Header -->
+        <div class="text-center">
+            <span class="bg-amber-100 text-amber-900 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider">Social Mission Feature</span>
+            <h1 class="text-4xl font-extrabold mt-3 mb-2" style="color: #9a3412;">The Endangered Culture Radar</h1>
+            <p class="text-gray-700 max-w-2xl mx-auto">Scanning all 22 states and 8 union territories of India to identify traditions, dying languages, and vanishing crafts at risk, with actionable ways you can help preserve them.</p>
+        </div>
+
+        <!-- Interactive Selector Box -->
+        <div class="bg-amber-50/90 p-8 rounded-3xl border-2 border-amber-200 shadow-xl backdrop-blur-sm space-y-6">
+            <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                    <label class="block font-bold mb-2 text-amber-900">Select Region (States & UTs)</label>
+                    <select id="radar-region" class="w-full p-4 border-2 border-amber-300 rounded-2xl bg-white text-gray-800 font-medium focus:outline-none focus:ring-2 focus:ring-orange-700">
+                        <optgroup label="States">
+                            <option value="andhra">Andhra Pradesh</option>
+                            <option value="assam">Assam</option>
+                            <option value="bengal" selected>West Bengal</option>
+                            <option value="bihar">Bihar</option>
+                            <option value="gujarat">Gujarat</option>
+                            <option value="haryana">Haryana</option>
+                            <option value="himachal">Himachal Pradesh</option>
+                            <option value="jammu">Jammu & Kashmir</option>
+                            <option value="jharkhand">Jharkhand</option>
+                            <option value="karnataka">Karnataka</option>
+                            <option value="kerala">Kerala</option>
+                            <option value="madhya-pradesh">Madhya Pradesh</option>
+                            <option value="maharashtra">Maharashtra</option>
+                            <option value="manipur">Manipur</option>
+                            <option value="meghalaya">Meghalaya</option>
+                            <option value="odisha">Odisha</option>
+                            <option value="punjab">Punjab</option>
+                            <option value="rajasthan">Rajasthan</option>
+                            <option value="tamil-nadu">Tamil Nadu</option>
+                            <option value="telangana">Telangana</option>
+                            <option value="tripura">Tripura</option>
+                            <option value="uttar-pradesh">Uttar Pradesh</option>
+                        </optgroup>
+                        <optgroup label="Union Territories">
+                            <option value="andaman">Andaman & Nicobar Islands</option>
+                            <option value="chandigarh">Chandigarh</option>
+                            <option value="dadra">Dadra and Nagar Haveli and Daman and Diu</option>
+                            <option value="delhi">Delhi NCR</option>
+                            <option value="ladakh">Ladakh</option>
+                            <option value="lakshadweep">Lakshadweep</option>
+                            <option value="puducherry">Puducherry</option>
+                            <option value="jk-ut">Jammu and Kashmir (UT)</option>
+                        </optgroup>
+                    </select>
+                </div>
+                <div>
+                    <label class="block font-bold mb-2 text-amber-900">Threat Level Status</label>
+                    <select id="radar-status" class="w-full p-4 border-2 border-amber-300 rounded-2xl bg-white text-gray-800 font-medium focus:outline-none focus:ring-2 focus:ring-orange-700">
+                        <option value="critical">🔴 Critically Threatened</option>
+                        <option value="declining">🟠 Declining Tradition</option>
+                        <option value="vulnerable">🟡 Vulnerable Knowledge</option>
+                    </select>
+                </div>
+            </div>
+
+            <button onclick="scanRadar()" class="w-full py-4 bg-orange-800 text-white rounded-2xl font-bold text-lg hover:bg-orange-900 transition shadow-lg tracking-wide">
+                Scan Region on Cultural Radar
+            </button>
+        </div>
+
+        <!-- Radar Result Display Box -->
+        <div id="radar-result" class="bg-white p-8 rounded-3xl border-2 border-amber-200 shadow-xl space-y-4">
+            <h3 class="text-2xl font-bold text-orange-900">Select a region and status above to run radar.</h3>
+            <p class="text-gray-600">Discover traditions at risk and take part in community preservation actions.</p>
+        </div>
+    </main>
+
+    <!-- JavaScript Logic -->
+    <script>
+        const radarDatabase = {
+            bengal: {
+                title: "West Bengal Cultural Heritage Scan",
+                tradition: "Potachitra Scroll Painting & Patua Folk Ballads",
+                risk: "Critically Threatened due to shifting modern media consumption and dwindling artisan successor generations.",
+                action: "What you can do: Donate to artisan collectives, buy authentic handmade scrolls directly, document local elder performances, or visit rural Pingla artist villages."
+            },
+            assam: {
+                title: "Assam Cultural Heritage Scan",
+                tradition: "Traditional Manuscript Painting on Saki Bark & Muga Handloom Weaving",
+                risk: "Declining Tradition as younger weavers transition to automated mills and palm-leaf records degrade.",
+                action: "What you can do: Support ethical handloom cooperatives, learn traditional weaving techniques, and sponsor digital manuscript transcription."
+            },
+            rajasthan: {
+                title: "Rajasthan Cultural Heritage Scan",
+                tradition: "Maand Classical Vocal Folk Art & Phad Scroll Storytelling",
+                risk: "Vulnerable Knowledge with very few remaining traditional practitioner families carrying forward the complete epics.",
+                action: "What you can do: Attend community-led folk music workshops, record oral histories, and promote authentic rural cultural tourism."
+            },
+            kerala: {
+                title: "Kerala Cultural Heritage Scan",
+                tradition: "Koodiyattam Sanskrit Theatre & Ancient Palm-Leaf Calculations",
+                risk: "Critically Threatened due to extremely specialized training requirements and limited institutional patrons.",
+                action: "What you can do: Support classical art academies, fund student apprenticeships, and engage with community-led archival projects."
+            }
+        };
+
+        function scanRadar() {
+            const region = document.getElementById('radar-region').value;
+            const status = document.getElementById('radar-status').value;
+            const resultBox = document.getElementById('radar-result');
+
+            const data = radarDatabase[region] || {
+                title: "Regional Cultural Heritage Scan",
+                tradition: "Indigenous Folk Crafts & Oral Dialect Traditions",
+                risk: "Facing modernization pressures, loss of documentation, and declining youth participation.",
+                action: "What you can do: Document local practices, support artisan markets, share digital archives, and visit community preservation centers."
+            };
+
+            let badgeColor = status === 'critical' ? 'bg-red-100 text-red-900' : (status === 'declining' ? 'bg-orange-100 text-orange-900' : 'bg-yellow-100 text-yellow-900');
+
+            resultBox.innerHTML = `
+                <div class="space-y-4">
+                    <span class="${badgeColor} px-3 py-1 rounded-full text-xs font-bold uppercase">Status: ${status.toUpperCase()}</span>
+                    <h3 class="text-2xl font-bold text-orange-900">${data.title}</h3>
+                    <p class="text-lg font-semibold text-gray-800">Target Tradition: <span class="text-orange-800">${data.tradition}</span></p>
+                    <p class="text-gray-700 leading-relaxed text-base">${data.risk}</p>
+                    <div class="bg-amber-50 p-5 rounded-2xl border border-amber-200 mt-4">
+                        <h4 class="font-bold text-orange-900 mb-1">Preservation Action Plan:</h4>
+                        <p class="text-sm text-gray-700">${data.action}</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        window.onload = scanRadar;
+    </script>
+</body>
+</html>
