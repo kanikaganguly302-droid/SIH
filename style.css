@@ -300,6 +300,50 @@
     font-size: 0.92rem;
     color: rgba(28,39,64,0.72);
   }
+  /* Custom styling for the popup container */
+.leaflet-popup-content-wrapper {
+    background: #fffbeb !important; /* Soft warm cream background */
+    color: #1f2937 !important;     /* Dark gray readable text color */
+    border-radius: 12px !important; /* Smooth rounded corners matching your site */
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1) !important;
+    padding: 4px;
+}/* Style the pointer triangle at the bottom of the popup */
+.leaflet-popup-tip {
+    background: #fffbeb !important;
+}/* Style text elements inside the popup */
+.leaflet-popup-content {
+    margin: 12px 16px !important;
+    line-height: 1.5;
+}
+
+.leaflet-popup-content h3 {
+    font-family: 'Poppins', sans-serif; /* Or your preferred site heading font */
+    font-size: 16px;
+    font-weight: 600;
+    color: #9a3412; /* Rich heritage terracotta / burnt orange tone */
+    margin-bottom: 6px;
+}
+
+.leaflet-popup-content p {
+    font-size: 13px;
+    color: #4b5563;
+    margin: 0;
+}
+.leaflet-popup-content .site-btn {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 6px 12px;
+    background-color: #9a3412;
+    color: white;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.leaflet-popup-content .site-btn:hover {
+    background-color: #7c2d12;
+}
   /* ---------- FINDER (Monuments & Sites lookup) ---------- */
   .finder-panel{
     background: var(--cream);
