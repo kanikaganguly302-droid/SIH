@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cultural Circular Economy - BharatVividha</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-color: #fdfbf7;
+            background-image: radial-gradient(#e2725b 0.5px, transparent 0.5px);
+            background-size: 24px 24px;
+        }
+    </style>
+</head>
+<body class="text-gray-900 font-sans">
+
+    <!-- Header Navigation -->
+    <header class="bg-white/90 backdrop-blur-md shadow-sm border-b border-amber-200 sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold tracking-wide" style="color: #9a3412;">BharatVividha</a>
+            <nav class="space-x-6 text-sm font-medium">
+                <a href="index.html" class="text-gray-700 hover:text-orange-800">Home</a>
+                <a href="follow-idea.html" class="text-gray-700 hover:text-orange-800">Follow an Idea</a>
+                <a href="circular-economy.html" class="text-orange-800 font-semibold underline underline-offset-4">Circular Economy</a>
+                <a href="innovative-features.html" class="text-gray-700 hover:text-orange-800">Innovation Index</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-10 max-w-4xl space-y-8">
+        
+        <!-- Header -->
+        <div class="text-center">
+            <span class="bg-amber-100 text-amber-900 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider">Sustainable Preservation Framework</span>
+            <h1 class="text-4xl font-extrabold mt-3 mb-2" style="color: #9a3412;">Cultural Circular Economy & Safeguards</h1>
+            <p class="text-gray-700 max-w-2xl mx-auto">Don't just promote heritage—protect its context. Explore how BharatVividha connects tourism revenue directly with artisan livelihoods and ethical preservation across all 22 states.</p>
+        </div>
+
+        <!-- Interactive Selector Box -->
+        <div class="bg-amber-50/90 p-8 rounded-3xl border-2 border-amber-200 shadow-xl backdrop-blur-sm space-y-6">
+            <div>
+                <label class="block font-bold mb-2 text-amber-900">Select Region (All 22 States)</label>
+                <select id="eco-state" class="w-full p-4 border-2 border-amber-300 rounded-2xl bg-white text-gray-800 font-medium focus:outline-none focus:ring-2 focus:ring-orange-700">
+                    <option value="bengal" selected>Bengal (West Bengal)</option>
+                    <option value="assam">Assam</option>
+                    <option value="andhra">Andhra Pradesh</option>
+                    <option value="bihar">Bihar</option>
+                    <option value="gujarat">Gujarat</option>
+                    <option value="haryana">Haryana</option>
+                    <option value="himachal">Himachal Pradesh</option>
+                    <option value="jammu">Jammu & Kashmir</option>
+                    <option value="jharkhand">Jharkhand</option>
+                    <option value="karnataka">Karnataka</option>
+                    <option value="kerala">Kerala</option>
+                    <option value="madhya-pradesh">Madhya Pradesh</option>
+                    <option value="maharashtra">Maharashtra</option>
+                    <option value="manipur">Manipur</option>
+                    <option value="meghalaya">Meghalaya</option>
+                    <option value="odisha">Odisha</option>
+                    <option value="punjab">Punjab</option>
+                    <option value="rajasthan">Rajasthan</option>
+                    <option value="tamil-nadu">Tamil Nadu</option>
+                    <option value="telangana">Telangana</option>
+                    <option value="tripura">Tripura</option>
+                    <option value="uttar-pradesh">Uttar Pradesh</option>
+                </select>
+            </div>
+
+            <button onclick="calculateCircularEconomy()" class="w-full py-4 bg-orange-800 text-white rounded-2xl font-bold text-lg hover:bg-orange-900 transition shadow-lg tracking-wide">
+                View Circular Economy & Safeguards
+            </button>
+        </div>
+
+        <!-- Result Display Box -->
+        <div id="eco-result" class="bg-white p-8 rounded-3xl border-2 border-amber-200 shadow-xl space-y-4">
+            <h3 class="text-2xl font-bold text-orange-900">Select a state above to analyze its circular economy model.</h3>
+            <p class="text-gray-600">Discover fair-trade artisan links and anti-commercialization safeguards.</p>
+        </div>
+    </main>
+
+    <!-- JavaScript Logic -->
+    <script>
+        const stateLabels = {
+            andhra: "Andhra Pradesh", assam: "Assam", bengal: "Bengal", bihar: "Bihar",
+            gujarat: "Gujarat", haryana: "Haryana", himachal: "Himachal Pradesh", jammu: "Jammu & Kashmir",
+            jharkhand: "Jharkhand", karnataka: "Karnataka", kerala: "Kerala", "madhya-pradesh": "Madhya Pradesh",
+            maharashtra: "Maharashtra", manipur: "Manipur", meghalaya: "Meghalaya", odisha: "Odisha",
+            punjab: "Punjab", rajasthan: "Rajasthan", "tamil-nadu": "Tamil Nadu", telangana: "Telangana",
+            tripura: "Tripura", "uttar-pradesh": "Uttar Pradesh"
+        };
+
+        const ecoDatabase = {
+            bengal: {
+                craft: "Traditional Terracotta Pottery & Patachitra Scroll Painting",
+                artisan: "Ramesh Chitrakar & Rural Artisan Collectives (Pingla, West Bengal)",
+                marketplace: "Direct Fair-Trade Marketplace ensuring 92% of tourist ticket and artifact purchase revenue goes directly to rural artisan family accounts.",
+                safeguard: "Anti-Folklory Safeguard: Prevents sacred ritual performances from being reduced to 10-minute commercial tourist shows by enforcing community consent protocols."
+            },
+            assam: {
+                craft: "Muga Silk Weaving & Bamboo Craftsmanship",
+                artisan: "Women Weavers Cooperative (Sualkuchi, Assam)",
+                marketplace: "Ethical Silk Hub linking rural handloom weavers directly with conscious global buyers without middleman exploitation.",
+                safeguard: "Preservation Safeguard: Protects natural dye forest harvesting limits to ensure sustainable raw material growth."
+            },
+            rajasthan: {
+                craft: "Miniature Painting & Block Printing Artisans",
+                artisan: "Master Craftsperson Guild (Jaipur & Jodhpur)",
+                marketplace: "Direct Artisan Patronage Program funding youth apprenticeships to keep dying handicraft techniques alive.",
+                safeguard: "Context Protection: Ensures historical craft heritage is presented with complete historical and spiritual context rather than generic souvenir manufacturing."
+            }
+        };
+
+        function calculateCircularEconomy() {
+            const stateKey = document.getElementById('eco-state').value;
+            const resultBox = document.getElementById('eco-result');
+
+            const stateName = stateLabels[stateKey] || "Selected State";
+            const data = ecoDatabase[stateKey] || {
+                craft: "Indigenous Handlooms, Folk Art & Rural Craft Traditions",
+                artisan: "Local Community Artisans & Traditional Guilds in " + stateName,
+                marketplace: "Direct Fair-Trade Revenue Model ensuring ethical pricing, direct digital payments, and sustainable livelihood support.",
+                safeguard: "Cultural Safeguard Protocol: Prevents over-commercialization and protects intangible heritage from superficial exploitation."
+            };
+
+            resultBox.innerHTML = `
+                <div class="space-y-4">
+                    <div class="flex justify-between items-center border-b border-amber-200 pb-3">
+                        <h3 class="text-2xl font-bold text-orange-900">${stateName} Circular Economy</h3>
+                        <span class="bg-green-100 text-green-900 px-3 py-1 rounded-full text-xs font-bold uppercase">Ethical Protection Active</span>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-4 text-sm">
+                        <div class="bg-amber-50 p-4 rounded-2xl border border-amber-200">
+                            <strong class="text-orange-900 block mb-1">🧵 Target Craft & Livelihood:</strong>
+                            <p class="text-gray-700">${data.craft}</p>
+                        </div>
+                        <div class="bg-amber-50 p-4 rounded-2xl border border-amber-200">
+                            <strong class="text-orange-900 block mb-1">👤 Primary Contributor:</strong>
+                            <p class="text-gray-700">${data.artisan}</p>
+                        </div>
+                    </div>
+                    <div class="p-5 bg-white rounded-2xl border border-amber-200 shadow-sm space-y-3">
+                        <div>
+                            <strong class="text-orange-900 block mb-1">🛒 Ethical Marketplace Integration:</strong>
+                            <p class="text-gray-700 text-sm">${data.marketplace}</p>
+                        </div>
+                        <div class="border-t border-amber-100 pt-3">
+                            <strong class="text-orange-900 block mb-1">🛡️ Anti-Commercialization Safeguard:</strong>
+                            <p class="text-gray-700 text-sm">${data.safeguard}</p>
+                        </div>
+                    </div>
+                    <p class="text-xs text-amber-800 italic">✓ Aligned with UNESCO intangible heritage preservation standards and sustainable tourism frameworks.</p>
+                </div>
+            `;
+        }
+
+        window.onload = calculateCircularEconomy;
+    </script>
+</body>
+</html>
