@@ -9,24 +9,25 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <style>
         body {
-            background-color: #fdfbf7;
-            background-image: radial-gradient(#e2725b 0.5px, transparent 0.5px);
-            background-size: 24px 24px;
+            /* Rich Indian Cultural Monument Aesthetic Background */
+            background-color: #7c2d12;
+            background-image: radial-gradient(#ea580c 0.75px, #7c2d12 0.75px);
+            background-size: 28px 28px;
         }
     </style>
 </head>
 <body class="text-gray-900 font-sans">
 
     <!-- Header Navigation -->
-    <header class="bg-white/90 backdrop-blur-md shadow-sm border-b border-amber-200 sticky top-0 z-50">
+    <header class="bg-white/95 backdrop-blur-md shadow-md border-b-2 border-amber-300 sticky top-0 z-50">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="index.html" class="text-2xl font-bold tracking-wide" style="color: #9a3412;">BharatVividha</a>
-            <nav class="space-x-4 text-sm font-medium flex flex-wrap items-center">
-                <a href="index.html" class="text-orange-800 font-semibold underline underline-offset-4">Home</a>
+            <a href="index.html" class="text-2xl font-extrabold tracking-wide" style="color: #9a3412;">BharatVividha</a>
+            <nav class="space-x-3 text-xs md:text-sm font-semibold flex flex-wrap items-center">
+                <a href="index.html" class="text-orange-800 underline underline-offset-4">Home</a>
                 <a href="cultural-dna.html" class="text-gray-700 hover:text-orange-800">Cultural DNA</a>
                 <a href="invisible-india.html" class="text-gray-700 hover:text-orange-800">Invisible India</a>
                 <a href="endangered-radar.html" class="text-gray-700 hover:text-orange-800">Endangered Radar</a>
-                <a href="cultural-evidence.html" class="text-gray-700 hover:text-orange-800">Evidence System</a>
+                <a href="cultural-evidence.html" class="text-gray-700 hover:text-orange-800">Evidence</a>
                 <a href="oral-memory.html" class="text-gray-700 hover:text-orange-800">Oral Memory</a>
                 <a href="evolution-simulator.html" class="text-gray-700 hover:text-orange-800">Evolution</a>
                 <a href="cultural-gravity.html" class="text-gray-700 hover:text-orange-800">Gravity</a>
@@ -38,14 +39,14 @@
     </header>
 
     <!-- Hero Section -->
-    <main class="container mx-auto px-6 py-10 max-w-5xl space-y-8">
-        <div class="text-center space-y-4">
+    <main class="container mx-auto px-6 py-10 max-w-6xl space-y-8">
+        <div class="text-center space-y-4 bg-white/95 p-8 rounded-3xl shadow-2xl border-2 border-amber-300 backdrop-blur-md">
             <span class="bg-amber-100 text-amber-900 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider">Smart India Hackathon 2026</span>
-            <h1 class="text-5xl font-extrabold tracking-tight" style="color: #9a3412;">Unveil the Multitudes of India</h1>
-            <p class="text-gray-700 max-w-2xl mx-auto text-lg">The most profound, accurate, and complete cultural travel guide honoring our Civilizational Foundations, Sacred Geographies, and Living Crafts.</p>
+            <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight" style="color: #9a3412;">Unveil the Multitudes of India</h1>
+            <p class="text-gray-700 max-w-2xl mx-auto text-base md:text-lg">The most profound, accurate, and complete cultural travel guide honoring our Civilizational Foundations, Sacred Geographies, and Living Crafts.</p>
             
             <!-- Professional Search & GPS Location Bar -->
-            <div class="bg-amber-50/90 p-4 rounded-3xl border-2 border-amber-200 shadow-xl max-w-3xl mx-auto flex flex-col md:flex-row gap-3 items-center">
+            <div class="bg-amber-50 p-4 rounded-3xl border-2 border-amber-200 shadow-inner max-w-3xl mx-auto flex flex-col md:flex-row gap-3 items-center">
                 <input type="text" id="location-input" placeholder="📍 Detect my location: Show heritage within 50km..." class="w-full p-4 border-2 border-amber-300 rounded-2xl bg-white text-gray-800 font-medium focus:outline-none focus:ring-2 focus:ring-orange-700 text-base">
                 <button onclick="detectGPSLocation()" class="w-full md:w-auto px-8 py-4 bg-orange-800 text-white rounded-2xl font-bold text-lg hover:bg-orange-900 transition shadow-lg shrink-0 tracking-wide">
                     Discover GPS
@@ -53,45 +54,50 @@
             </div>
         </div>
 
-        <!-- Interactive Heritage Map Box (Correctly Centered on India with English Labels) -->
-        <div class="bg-white p-6 rounded-3xl border-2 border-amber-200 shadow-xl space-y-4">
-            <div class="flex justify-between items-center">
-                <h3 class="text-2xl font-bold text-orange-900">Interactive Regional Heritage Map</h3>
-                <span class="text-xs bg-amber-100 text-amber-900 px-3 py-1 rounded-full font-semibold">Live GIS Scanner Active</span>
+        <!-- Clean Grid Layout: Map on Left, AI Chatbot on Right (No Overlap!) -->
+        <div class="grid lg:grid-cols-3 gap-8">
+            
+            <!-- Interactive Heritage Map (Takes up 2 Columns) -->
+            <div class="lg:col-span-2 bg-white p-6 rounded-3xl border-2 border-amber-300 shadow-2xl space-y-4">
+                <div class="flex justify-between items-center">
+                    <h3 class="text-2xl font-bold text-orange-900">Interactive Regional Heritage Map</h3>
+                    <span class="text-xs bg-amber-100 text-amber-900 px-3 py-1 rounded-full font-semibold">Live GIS Scanner Active</span>
+                </div>
+                <!-- Leaflet Map Container -->
+                <div id="heritage-map" style="width: 100%; height: 480px; border-radius: 16px; border: 2px solid #fde68a;"></div>
             </div>
-            <div id="heritage-map" style="width: 100%; height: 450px; border-radius: 16px; border: 2px solid #fde68a;"></div>
+
+            <!-- AI Heritage Guide Chatbot (Takes up 1 Column - Perfectly Aligned, No Overlap) -->
+            <div class="bg-white border-2 border-amber-300 rounded-3xl shadow-2xl overflow-hidden flex flex-col h-[540px]">
+                <div class="bg-orange-800 text-white p-4 font-bold flex justify-between items-center">
+                    <span>🤖 AI Heritage Guide</span>
+                    <span class="text-xs bg-orange-900 px-2.5 py-1 rounded-full animate-pulse">Online</span>
+                </div>
+                <div id="chat-messages" class="p-4 flex-1 overflow-y-auto text-sm space-y-3 bg-amber-50/50">
+                    <div class="bg-white p-3 rounded-2xl border border-amber-200 shadow-sm text-gray-800">
+                        Namaste! Ask me anything about Indian heritage, temples, or artisan traditions across all 22 states.
+                    </div>
+                </div>
+                <div class="p-3 bg-white border-t border-amber-200 flex gap-2">
+                    <input type="text" id="chat-input" placeholder="Ask about Indian heritage..." class="w-full p-3 border border-amber-300 rounded-xl text-sm focus:outline-none focus:ring-1 focus:ring-orange-700">
+                    <button onclick="sendChatMessage()" class="px-4 py-3 bg-orange-800 text-white text-sm font-bold rounded-xl hover:bg-orange-950 transition">Send</button>
+                </div>
+            </div>
+
         </div>
     </main>
 
-    <!-- Floating AI Heritage Chatbot -->
-    <div class="fixed bottom-6 right-6 z-50 bg-white border-2 border-amber-300 rounded-3xl shadow-2xl w-80 overflow-hidden">
-        <div class="bg-orange-800 text-white p-4 font-bold flex justify-between items-center">
-            <span>🤖 AI Heritage Guide</span>
-            <span class="text-xs bg-orange-900 px-2 py-0.5 rounded-full">Online</span>
-        </div>
-        <div id="chat-messages" class="p-4 h-60 overflow-y-auto text-sm space-y-3 bg-amber-50/50">
-            <div class="bg-white p-3 rounded-2xl border border-amber-200 shadow-sm">
-                Namaste! Ask me anything about Indian heritage, temples, or artisan traditions.
-            </div>
-        </div>
-        <div class="p-3 bg-white border-t border-amber-200 flex gap-2">
-            <input type="text" id="chat-input" placeholder="Ask about heritage..." class="w-full p-2 border border-amber-300 rounded-xl text-sm focus:outline-none focus:ring-1 focus:ring-orange-700">
-            <button onclick="sendChatMessage()" class="px-4 py-2 bg-orange-800 text-white text-sm font-bold rounded-xl hover:bg-orange-900">Send</button>
-        </div>
-    </div>
-
-    <!-- Map & Geolocation Script -->
+    <!-- Map, GPS & Chatbot JavaScript Logic -->
     <script>
-        // Initialize Map centered strictly on India (Lat: 22.97, Lon: 78.65, Zoom: 5)
+        // Initialize Map centered strictly on India with English labels
         let map = L.map('heritage-map').setView([22.9734, 78.6569], 5);
 
-        // Standard English OpenStreetMap tiles
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
             attribution: '© BharatVividha SIH 2026'
         }).addTo(map);
 
-        // Key Indian Heritage Markers in English
+        // Key Heritage Markers in English
         const heritageSites = [
             { name: "Gour & Malda Archaeological Ruins", lat: 25.0108, lon: 88.1413, desc: "Terracotta architecture and medieval sultanate trade roots." },
             { name: "Brihadeeswarar Temple, Thanjavur", lat: 10.7828, lon: 79.1318, desc: "Chola dynasty architectural marvel." },
@@ -122,7 +128,6 @@
                     
                     inputField.value = `📍 GPS Location Found (${lat.toFixed(2)}, ${lon.toFixed(2)}) • Scanning 50km radius...`;
                     
-                    // Center map on user location and zoom in
                     map.setView([lat, lon], 12);
                     
                     L.marker([lat, lon]).addTo(map)
@@ -147,12 +152,12 @@
             const messages = document.getElementById('chat-messages');
             if(!input.value.trim()) return;
 
-            messages.innerHTML += `<div class="bg-orange-100 p-3 rounded-2xl border border-amber-200 text-right ml-6">${input.value}</div>`;
+            messages.innerHTML += `<div class="bg-orange-100 p-3 rounded-2xl border border-amber-200 text-right ml-6 font-medium text-gray-800">${input.value}</div>`;
             const userQuery = input.value;
             input.value = "";
 
             setTimeout(() => {
-                messages.innerHTML += `<div class="bg-white p-3 rounded-2xl border border-amber-200 shadow-sm mr-6">That is a wonderful question regarding ${userQuery}. BharatVividha's archival records verify rich cultural roots associated with this query across our national heritage databases!</div>`;
+                messages.innerHTML += `<div class="bg-white p-3 rounded-2xl border border-amber-200 shadow-sm mr-6 text-gray-800">That is a wonderful inquiry regarding <b>${userQuery}</b>. BharatVividha's archival records confirm rich civilizational roots and community records connected to this across our regional databases!</div>`;
                 messages.scrollTop = messages.scrollHeight;
             }, 600);
         }
