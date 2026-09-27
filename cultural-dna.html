@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cultural DNA Matrix - BharatVividha</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-color: #fdfbf7;
+            background-image: radial-gradient(#e2725b 0.5px, transparent 0.5px);
+            background-size: 24px 24px;
+        }
+    </style>
+</head>
+<body class="text-gray-900 font-sans">
+
+    <!-- Header Navigation -->
+    <header class="bg-white/90 backdrop-blur-md shadow-sm border-b border-amber-200 sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold tracking-wide" style="color: #9a3412;">BharatVividha</a>
+            <nav class="space-x-6 text-sm font-medium">
+                <a href="index.html" class="text-gray-700 hover:text-orange-800">Home</a>
+                <a href="tour-planner.html" class="text-gray-700 hover:text-orange-800">Tour Planner</a>
+                <a href="cultural-dna.html" class="text-orange-800 font-semibold underline underline-offset-4">Cultural DNA</a>
+                <a href="innovative-features.html" class="text-gray-700 hover:text-orange-800">Innovation Index</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-10 max-w-4xl space-y-8">
+        
+        <!-- Header -->
+        <div class="text-center">
+            <span class="bg-amber-100 text-amber-900 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider">Interactive Signature Feature</span>
+            <h1 class="text-4xl font-extrabold mt-3 mb-2" style="color: #9a3412;">The "Cultural DNA" of India</h1>
+            <p class="text-gray-700 max-w-2xl mx-auto">Instead of asking a generic question like "What is Rajasthan?", compare regions side-by-side to discover what connects them and what makes them culturally unique.</p>
+        </div>
+
+        <!-- Interactive Matcher Box -->
+        <div class="bg-amber-50/90 p-8 rounded-3xl border-2 border-amber-200 shadow-xl backdrop-blur-sm space-y-6">
+            <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                    <label class="block font-bold mb-2 text-amber-900">Select Region A</label>
+                    <select id="region-a" class="w-full p-4 border-2 border-amber-300 rounded-2xl bg-white text-gray-800 font-medium focus:outline-none focus:ring-2 focus:ring-orange-700">
+                        <option value="bengal">Bengal</option>
+                        <option value="rajasthan">Rajasthan</option>
+                        <option value="kerala">Kerala</option>
+                        <option value="assam">Assam</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block font-bold mb-2 text-amber-900">Select Region B</label>
+                    <select id="region-b" class="w-full p-4 border-2 border-amber-300 rounded-2xl bg-white text-gray-800 font-medium focus:outline-none focus:ring-2 focus:ring-orange-700">
+                        <option value="assam">Assam</option>
+                        <option value="bengal">Bengal</option>
+                        <option value="rajasthan">Rajasthan</option>
+                        <option value="tamil-nadu">Tamil Nadu</option>
+                    </select>
+                </div>
+            </div>
+
+            <button onclick="compareDNA()" class="w-full py-4 bg-orange-800 text-white rounded-2xl font-bold text-lg hover:bg-orange-900 transition shadow-lg tracking-wide">
+                Construct Cultural DNA Profile
+            </button>
+        </div>
+
+        <!-- Comparison Result Display -->
+        <div id="dna-result" class="grid md:grid-cols-2 gap-6">
+            <!-- Dynamic output populates here -->
+        </div>
+    </main>
+
+    <!-- JavaScript Logic -->
+    <script>
+        const culturalProfiles = {
+            bengal: {
+                name: "Bengal",
+                language: "Bengali",
+                food: "Rice, Fish, Mustard",
+                art: "Pattachitra, Kalighat",
+                literature: "Tagore, Bankim",
+                music: "Baul, Rabindra Sangeet",
+                climate: "Monsoon, Delta",
+                occupation: "Agriculture, Fishing, Trade"
+            },
+            rajasthan: {
+                name: "Rajasthan",
+                language: "Marwari, Hindi",
+                food: "Dal Baati Churma, Bajra",
+                art: "Miniature painting, Bandhani",
+                literature: "Meera Bai folk epics",
+                music: "Maand, Manganiyar folk",
+                climate: "Arid desert, Extreme heat",
+                occupation: "Animal husbandry, Handicrafts, Tourism"
+            },
+            kerala: {
+                name: "Kerala",
+                language: "Malayalam",
+                food: "Rice, Coconut, Seafood",
+                art: "Kathakali, Mural painting",
+                literature: "Kumaran Asan, Vallathol",
+                music: "Sopana Sangeetham, Chenda melam",
+                climate: "Tropical monsoon, Coastal",
+                occupation: "Spices cultivation, Fishing, Coir trade"
+            },
+            assam: {
+                name: "Assam",
+                language: "Assamese",
+                food: "Rice, Bamboo shoot, Fish",
+                art: "Muga silk weaving, Terracotta",
+                literature: "Lakshminath Bezbaroa",
+                music: "Bihu songs, Zikir",
+                climate: "Subtropical, Brahmaputra valley",
+                occupation: "Tea cultivation, Agriculture, Silk production"
+            },
+            "tamil-nadu": {
+                name: "Tamil Nadu",
+                language: "Tamil",
+                food: "Rice, Sambar, Chettinad spices",
+                art: "Tanjore painting, Bronze casting",
+                literature: "Sangam literature, Thirukkural",
+                music: "Carnatic music, Bharatanatyam rhythm",
+                climate: "Tropical, Monsoonal",
+                occupation: "Textile weaving, Temple architecture, IT/Trade"
+            }
+        };
+
+        function compareDNA() {
+            const regA = document.getElementById('region-a').value;
+            const regB = document.getElementById('region-b').value;
+            const resultDiv = document.getElementById('dna-result');
+
+            const profileA = culturalProfiles[regA];
+            const profileB = culturalProfiles[regB];
+
+            if (!profileA || !profileB) {
+                resultDiv.innerHTML = `<p class="text-red-600 font-bold col-span-2">Please select valid regions.</p>`;
+                return;
+            }
+
+            resultDiv.innerHTML = `
+                <div class="bg-white p-6 rounded-3xl border-2 border-amber-200 shadow-xl space-y-3">
+                    <h3 class="text-2xl font-bold text-orange-900 border-b border-amber-100 pb-2">${profileA.name} Profile</h3>
+                    <ul class="text-sm space-y-2 text-gray-700">
+                        <li><strong>Language:</strong> ${profileA.language}</li>
+                        <li><strong>Food Culture:</strong> ${profileA.food}</li>
+                        <li><strong>Art & Craft:</strong> ${profileA.art}</li>
+                        <li><strong>Literature:</strong> ${profileA.literature}</li>
+                        <li><strong>Music:</strong> ${profileA.music}</li>
+                        <li><strong>Climate:</strong> ${profileA.climate}</li>
+                        <li><strong>Core Occupation:</strong> ${profileA.occupation}</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-6 rounded-3xl border-2 border-amber-200 shadow-xl space-y-3">
+                    <h3 class="text-2xl font-bold text-orange-900 border-b border-amber-100 pb-2">${profileB.name} Profile</h3>
+                    <ul class="text-sm space-y-2 text-gray-700">
+                        <li><strong>Language:</strong> ${profileB.language}</li>
+                        <li><strong>Food Culture:</strong> ${profileB.food}</li>
+                        <li><strong>Art & Craft:</strong> ${profileB.art}</li>
+                        <li><strong>Literature:</strong> ${profileB.literature}</li>
+                        <li><strong>Music:</strong> ${profileB.music}</li>
+                        <li><strong>Climate:</strong> ${profileB.climate}</li>
+                        <li><strong>Core Occupation:</strong> ${profileB.occupation}</li>
+                    </ul>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>
