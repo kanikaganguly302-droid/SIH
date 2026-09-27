@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Leaflet CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+<!-- Leaflet JavaScript -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BharatVividha - The Complete Cultural Heritage Guide</title>
@@ -241,6 +246,7 @@
             <input type="text" placeholder="📍 Detect my location: Show heritage within 50km...">
             <button class="search-btn" onclick="loadMap()">Discover</button>
         </div>
+        <div id="heritage-map" style="width: 100%; height: 500px; border-radius: 12px;"></div>
     </section>
 
     <section class="categories-section">
