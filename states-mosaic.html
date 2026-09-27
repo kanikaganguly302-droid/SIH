@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Living Mosaic of 22 States - BharatVividha</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #7c2d12;
+            background-image: radial-gradient(#ea580c 0.75px, #7c2d12 0.75px);
+            background-size: 28px 28px;
+        }
+    </style>
+</head>
+<body class="text-gray-900 font-sans">
+
+    <!-- Header Navigation -->
+    <header class="bg-white/95 backdrop-blur-md shadow-md border-b-2 border-amber-300 sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-extrabold tracking-wide" style="color: #9a3412;">BharatVividha</a>
+            <nav class="space-x-4 text-sm font-semibold flex flex-wrap items-center">
+                <a href="index.html" class="text-gray-700 hover:text-orange-800">Home</a>
+                <a href="states-mosaic.html" class="text-orange-800 underline underline-offset-4">Living Mosaic (22 States)</a>
+                <a href="cultural-dna.html" class="text-gray-700 hover:text-orange-800">Cultural DNA</a>
+                <a href="invisible-india.html" class="text-gray-700 hover:text-orange-800">Invisible India</a>
+                <a href="endangered-radar.html" class="text-gray-700 hover:text-orange-800">Endangered Radar</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-10 max-w-7xl space-y-8">
+        
+        <!-- Header Banner -->
+        <div class="text-center space-y-4 bg-white/95 p-8 rounded-3xl shadow-2xl border-2 border-amber-300">
+            <span class="bg-amber-100 text-amber-900 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider">Comprehensive State Archives</span>
+            <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight" style="color: #9a3412;">The Living Mosaic of 22 States</h1>
+            <p class="text-gray-700 max-w-3xl mx-auto text-base md:text-lg">Explore verified destinations, cultural traditions, architectural marvels, and indigenous arts across all 22 states of India.</p>
+        </div>
+
+        <!-- 22 States Grid -->
+        <div id="states-grid" class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <!-- JavaScript will dynamically render all 22 states here -->
+        </div>
+    </main>
+
+    <!-- State Details Modal -->
+    <div id="state-modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-8 space-y-6 shadow-2xl border-4 border-amber-300 relative">
+            <button onclick="closeModal()" class="absolute top-6 right-6 bg-amber-100 hover:bg-orange-800 hover:text-white text-orange-900 w-10 h-10 rounded-full font-bold text-lg transition flex items-center justify-center">✕</button>
+            <div id="modal-content" class="space-y-4">
+                <!-- Dynamic Modal Content -->
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Data & Logic -->
+    <script>
+        const statesData = [
+            {
+                name: "Andhra Pradesh",
+                tagline: "The Koh-i-Noor of India's Heritage",
+                image: "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=600&q=80",
+                destinations: "Tirupati Temple, Lepakshi Hanging Pillar Temple, Undavalli Caves, Araku Valley, Amaravati Stupa.",
+                culture: "Kuchipudi classical dance, Kalamkari textile art, Carnatic music tradition, and spicy Telugu culinary arts featuring Gongura curries.",
+                architecture: "Dravidian and Vijayanagara rock-cut marvels showcasing intricate monolithic sculptures."
+            },
+            {
+                name: "Assam",
+                tagline: "Gateway to the Brahmaputra Valley",
+                image: "https://images.unsplash.com/photo-1598091383021-15ddea10925d?auto=format&fit=crop&w=600&q=80",
+                destinations: "Kaziranga National Park, Majuli River Island, Kamakhya Temple, Sualkuchi Weaving Village, Manas.",
+                culture: "Bihu folk dance, Zikir spiritual hymns, Muga silk handlooms, and traditional bamboo handicrafts.",
+                architecture: "Ahom multi-tiered roof structures and ancient temple architecture blending indigenous styles."
+            },
+            {
+                name: "West Bengal",
+                tagline: "Cultural Capital of the Delta",
+                image: "https://images.unsplash.com/photo-1558431382-27e303142255?auto=format&fit=crop&w=600&q=80",
+                destinations: "Gour & Malda ruins, Bishnupur Terracotta Temples, Sundarbans mangrove forests, Darjeeling Hills, Kolkata Victoria Memorial.",
+                culture: "Baul wandering mystic music, Rabindra Sangeet, Durga Puja festivities, Patachitra scroll painting, and aromatic rice traditions.",
+                architecture: "Sultanate brickwork, terracotta temple arches, and colonial neo-classical heritage buildings."
+            },
+            {
+                name: "Bihar",
+                tagline: "Cradle of Ancient Universities & Enlightenment",
+                image: "https://images.unsplash.com/photo-1608958447935-7798782d96bc?auto=format&fit=crop&w=600&q=80",
+                destinations: "Bodh Gaya Mahabodhi Temple, Nalanda University Ruins, Vaishli, Rajgir hot springs, Vikramshila.",
+                culture: "Madhubani folk painting, Soniya and Sohar folk songs, Litti Chokha culinary heritage, and ancient Buddhist philosophy.",
+                architecture: "Ancient brick stupas, monastic quadrangles, and Mauryan polished stone pillar remnants."
+            },
+            {
+                name: "Gujarat",
+                tagline: "Land of Legends, Salt Deserts & Coastlines",
+                image: "https://images.unsplash.com/photo-1617854818583-09e7f077a156?auto=format&fit=crop&w=600&q=80",
+                destinations: "Somnath Temple, Rann of Kutch white desert, Rani ki Vav stepwell, Gir National Park, Sabarmati Ashram.",
+                culture: "Garba and Dandiya folk dances, Bandhani tie-dye textile artistry, Rogan painting, and vegetarian culinary heritage.",
+                architecture: "Intricately carved Maru-Gurjara temple spires and subterranean stepwell engineering."
+            },
+            {
+                name: "Haryana",
+                tagline: "Vedic Roots & Agricultural Prosperity",
+                image: "https://images.unsplash.com/photo-1592635196222-a95d73652a65?auto=format&fit=crop&w=600&q=80",
+                destinations: "Kurukshetra Brahma Sarovar, Sultanpur Bird Sanctuary, Pinjore Gardens, Rakhigarhi Harappan site.",
+                culture: "Haryanvi Ragni folk music, Phulkari embroidery traditions, dairy-rich cuisine featuring ghee and Bajra roti.",
+                architecture: "Vedic sacrificial altars, colonial cantonment architecture, and Harappan urban planning layouts."
+            },
+            {
+                name: "Himachal Pradesh",
+                tagline: "The Abode of Snow & Himalayan Spirituality",
+                image: "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=600&q=80",
+                destinations: "Key Monastery (Spiti), Baijnath Temple, Rohtang Pass, Dharamshala McLeod Ganj, Kullu Valley.",
+                culture: "Nati folk dance music, Kangra miniature painting, Tibetan Buddhist chants, and traditional Dham feasts.",
+                architecture: "Kath-Kuni wooden interlocking mountain architecture and ancient stone pagoda shrines."
+            },
+            {
+                name: "Jammu & Kashmir",
+                tagline: "Paradise on Earth & Silk Route Crossroads",
+                image: "https://images.unsplash.com/photo-1595815771614-ade9d652a65d?auto=format&fit=crop&w=600&q=80",
+                destinations: "Srinagar Dal Lake, Gulmarg meadows, Martand Sun Temple ruins, Pahalgam, Vaishno Devi.",
+                culture: "Sufiana Kalam music, Chakri folk songs, Pashmina shawl weaving, Papier-mâché craft, and Wazwan cuisine.",
+                architecture: "Kashmiri wooden lattice architecture, Mughal terraced gardens, and ancient stone sun temples."
+            },
+            {
+                name: "Jharkhand",
+                tagline: "Mineral Wealth & Indigenous Tribal Forests",
+                image: "https://images.unsplash.com/photo-1618215501391-729013f99e82?auto=format&fit=crop&w=600&q=80",
+                destinations: "Deoghar Baidyanath Temple, Betla National Park, Hundru Falls, Parasnath Hills, Jamshedpur.",
+                culture: "Sohrai and Khovar tribal wall painting, Santhali dance music, forest-foraged cuisine, and sacred grove rituals.",
+                architecture: "Indigenous tribal shrines, laterite stone architecture, and sacred temple complexes."
+            },
+            {
+                name: "Karnataka",
+                tagline: "Epic Empires, Palaces & Ghats",
+                image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80",
+                destinations: "Hampi ruins, Mysore Palace, Badami cave temples, Belur & Halebidu temples, Coorg coffee hills.",
+                culture: "Carnatic classical music, Yakshagana theatre, Mysore painting, and traditional Udupi culinary arts.",
+                architecture: "Vesara temple architecture, Hoysala soapstone sculptures, and Vijayanagara stone chariots."
+            },
+            {
+                name: "Kerala",
+                tagline: "God's Own Country & Global Spice Coast",
+                image: "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=600&q=80",
+                destinations: "Alleppey backwaters, Munnar tea gardens, Kochi Fort, Padmanabhaswamy Temple, Wayanad.",
+                culture: "Kathakali classical dance-drama, Theyyam ritual performances, Ayurvedic medicine, and Onam Sadya feasts.",
+                architecture: "Kerala wooden gabled roof structures, maritime fort ramparts, and Indo-Portuguese streetscapes."
+            },
+            {
+                name: "Madhya Pradesh",
+                tagline: "The Heart of India's Historical Tapestry",
+                image: "https://images.unsplash.com/photo-1584646098378-0874589d76b1?auto=format&fit=crop&w=600&q=80",
+                destinations: "Khajuraho temples, Sanchi Stupa, Gwalior Fort, Bandhavgarh National Park, Ujjain Mahakaleshwar.",
+                culture: "Chanderi saree weaving, Gond tribal art, classical Kalidasa literature traditions, and Poha culinary culture.",
+                architecture: "Chandela sandstone temples, Buddhist hemispherical stupas, and medieval hilltop fortresses."
+            },
+            {
+                name: "Maharashtra",
+                tagline: "Land of Caves, Maratha Forts & Commercial Vibrancy",
+                image: "https://images.unsplash.com/photo-1570168007204-dfb528c6958f?auto=format&fit=crop&w=600&q=80",
+                destinations: "Ajanta & Ellora Caves, Chhatrapati Shivaji Terminus (Mumbai), Shirdi, Mahabaleshwar, Lonar Crater.",
+                culture: "Lavani folk dance, Warli tribal painting, Paithani silk weaving, Natya Sangeet, and Maharashtrian street food.",
+                architecture: "Massive monolithic rock-cut cave temples and impregnable hill fortresses."
+            },
+            {
+                name: "Manipur",
+                tagline: "Jewel of the East & Cradle of Polo",
+                image: "https://images.unsplash.com/photo-1617854818583-09e7f077a156?auto=format&fit=crop&w=600&q=80",
+                destinations: "Loktak Lake (floating phumdis), Keibul Lamjao National Park, Kangla Fort, Imphal.",
+                culture: "Manipuri classical dance (Raas Leela), Pung Cholom drum dances, handloom crafts, and Eromba cuisine.",
+                architecture: "Traditional royal palace structures and sacred indigenous temple groves (Umang Lai)."
+            },
+            {
+                name: "Meghalaya",
+                tagline: "The Abode of Clouds & Living Root Bridges",
+                image: "https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=600&q=80",
+                destinations: "Cherrapunji, Mawlynnong (cleanest village), Living Root Bridges, Shillong Peak, Mawsmai Cave.",
+                culture: "Khasi folk hymns, cane and bamboo craftsmanship, indigenous matriarchal governance systems, and Jadoh cuisine.",
+                architecture: "Bio-engineering living root bridges and indigenous plateau homesteads."
+            },
+            {
+                name: "Odisha",
+                tagline: "Land of Temple Spires, Chariots & Coastlines",
+                image: "https://images.unsplash.com/photo-1608958447935-7798782d96bc?auto=format&fit=crop&w=600&q=80",
+                destinations: "Konark Sun Temple, Puri Jagannath Temple, Bhubaneswar Lingaraj Temple, Chilika Lake, Simlipal.",
+                culture: "Odissi classical dance and music, Pattachitra scroll painting, stone carving, and Pakhala culinary heritage.",
+                architecture: "Nagra-style curvilinear temple towers (Deuls) adorned with exquisite stone sculptures."
+            },
+            {
+                name: "Punjab",
+                tagline: "Land of Five Rivers, Valour & Harvest Joys",
+                image: "https://images.unsplash.com/photo-1514214246283-d427a95c5d2f?auto=format&fit=crop&w=600&q=80",
+                destinations: "Amritsar Golden Temple, Wagah Border, Jallianwala Bagh, Anandpur Sahib, Patiala Qila Mubarak.",
+                culture: "Bhangra and Gidda folk dances, Phulkari textile embroidery, Sufi poetry of Bulleh Shah, and Makki di Roti feasts.",
+                architecture: "Sikh gurdwara architecture featuring golden domes and reflecting holy sarovars."
+            },
+            {
+                name: "Rajasthan",
+                tagline: "Land of Kings, Deserts & Forts",
+                image: "https://images.unsplash.com/photo-1599661046827-dacff0c0f09a?auto=format&fit=crop&w=600&q=80",
+                destinations: "Jaipur Amber Fort, Jaisalmer Thar Desert, Udaipur City Palace, Jodhpur Mehrangarh, Pushkar Lake.",
+                culture: "Maand vocal folk music, Manganiyar desert musicians, block printing, miniature painting, and Dal Baati Churma.",
+                architecture: "Majestic hilltop fortresses, ornate marble havelis, and intricate water stepwells (Baoris)."
+            },
+            {
+                name: "Tamil Nadu",
+                tagline: "Land of Dravidian Temples & Classical Arts",
+                image: "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=600&q=80",
+                destinations: "Madurai Meenakshi Temple, Thanjavur Brihadeeswarar Temple, Mahabalipuram shore temples, Ooty, Rameswaram.",
+                culture: "Bharatanatyam classical dance, Sangam literature, Tanjore gold painting, Bronze casting, and Chettinad cuisine.",
+                architecture: "Dravidian temple architecture featuring towering multi-tiered Gopurams and pillared Mandapas."
+            },
+            {
+                name: "Telangana",
+                tagline: "The Deccani Plateau of Culture & Innovation",
+                image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80",
+                destinations: "Hyderabad Charminar, Golconda Fort, Warangal Thousand Pillar Temple, Ramappa UNESCO Temple.",
+                culture: "Perini Thandavam dance, Hyderabadi culinary arts (Biryani), Nirmal wooden toys, and Cherial scroll paintings.",
+                architecture: "Kakatiya dynasty star-shaped architecture and Qutb Shahi Indo-Islamic dome engineering."
+            },
+            {
+                name: "Tripura",
+                tagline: "Royal Palaces amidst Hills & Bamboo Forests",
+                image: "https://images.unsplash.com/photo-1598091383021-15ddea10925d?auto=format&fit=crop&w=600&q=80",
+                destinations: "Ujjayanta Palace (Agartala), Neermahal Water Palace, Unakoti rock carvings, Jampui Hills.",
+                culture: "Tripuri tribal folk dances (Hojagiri), bamboo and cane handicrafts, Kokborok folklore, and traditional Mui Borok cuisine.",
+                architecture: "Royal Indo-Saracenic lakeside palaces and colossal hillside rock-cut bas-relief carvings."
+            },
+            {
+                name: "Uttar Pradesh",
+                tagline: "The Sacred Heartland of Epic Traditions",
+                image: "https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=600&q=80",
+                destinations: "Agra Taj Mahal, Varanasi Ghats & Kashi Vishwanath, Ayodhya, Prayagraj Triveni Sangam, Lucknow Residency.",
+                culture: "Kathak classical dance, Awadhi poetry and cuisine, Banarasi silk weaving, Zardozi embroidery, and folk Thumri music.",
+                architecture: "Mughal white marble mausoleums, Awadhi arched pavilions, and sacred riverside ghat stairways."
+            }
+        ];
+
+        function renderGrid() {
+            const grid = document.getElementById('states-grid');
+            grid.innerHTML = statesData.map((state, index) => `
+                <div onclick="openModal(${index})" class="bg-white rounded-2xl overflow-hidden shadow-lg border-2 border-amber-300 hover:scale-105 transition duration-300 cursor-pointer flex flex-col">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="${state.image}" alt="${state.name}" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent flex items-end p-4">
+                            <h3 class="text-white text-xl font-bold">${state.name}</h3>
+                        </div>
+                    </div>
+                    <div class="p-4 flex-1 flex flex-col justify-between space-y-2">
+                        <p class="text-xs font-semibold text-orange-800 uppercase">${state.tagline}</p>
+                        <p class="text-xs text-gray-600 line-clamp-2"><strong>Destinations:</strong> ${state.destinations}</p>
+                        <span class="text-xs font-bold text-amber-900 underline mt-2">Explore Cultural Profile →</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function openModal(index) {
+            const state = statesData[index];
+            const modal = document.getElementById('state-modal');
+            const content = document.getElementById('modal-content');
+
+            content.innerHTML = `
+                <div class="space-y-4">
+                    <div class="relative h-64 rounded-2xl overflow-hidden border-2 border-amber-300">
+                        <img src="${state.image}" alt="${state.name}" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-6">
+                            <div>
+                                <span class="bg-orange-600 text-white px-3 py-1 rounded-full text-xs font-bold uppercase">State Profile</span>
+                                <h2 class="text-3xl font-extrabold text-white mt-1">${state.name}</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-sm font-semibold text-orange-800 italic">${state.tagline}</p>
+                    
+                    <div class="space-y-3 text-sm">
+                        <div class="bg-amber-50 p-4 rounded-xl border border-amber-200">
+                            <strong class="text-orange-900 block mb-1">🏛️ Key Destinations & Monuments:</strong>
+                            <p class="text-gray-700">${state.destinations}</p>
+                        </div>
+                        <div class="bg-amber-50 p-4 rounded-xl border border-amber-200">
+                            <strong class="text-orange-900 block mb-1">🎭 Cultural & Artistic Fabric:</strong>
+                            <p class="text-gray-700">${state.culture}</p>
+                        </div>
+                        <div class="bg-amber-50 p-4 rounded-xl border border-amber-200">
+                            <strong class="text-orange-900 block mb-1">📐 Architectural Engineering Heritage:</strong>
+                            <p class="text-gray-700">${state.architecture}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+            modal.classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('state-modal').classList.add('hidden');
+        }
+
+        window.onload = renderGrid;
+    </script>
+</body>
+</html>
