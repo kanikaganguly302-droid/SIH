@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Follow an Idea Across India - BharatVividha</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-color: #fdfbf7;
+            background-image: radial-gradient(#e2725b 0.5px, transparent 0.5px);
+            background-size: 24px 24px;
+        }
+    </style>
+</head>
+<body class="text-gray-900 font-sans">
+
+    <!-- Header Navigation -->
+    <header class="bg-white/90 backdrop-blur-md shadow-sm border-b border-amber-200 sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold tracking-wide" style="color: #9a3412;">BharatVividha</a>
+            <nav class="space-x-6 text-sm font-medium">
+                <a href="index.html" class="text-gray-700 hover:text-orange-800">Home</a>
+                <a href="accessibility.html" class="text-gray-700 hover:text-orange-800">Accessibility</a>
+                <a href="follow-idea.html" class="text-orange-800 font-semibold underline underline-offset-4">Follow an Idea</a>
+                <a href="innovative-features.html" class="text-gray-700 hover:text-orange-800">Innovation Index</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-10 max-w-4xl space-y-8">
+        
+        <!-- Header -->
+        <div class="text-center">
+            <span class="bg-amber-100 text-amber-900 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider">Signature Conceptual Feature</span>
+            <h1 class="text-4xl font-extrabold mt-3 mb-2" style="color: #9a3412;">Follow an Idea Across India</h1>
+            <p class="text-gray-700 max-w-2xl mx-auto">Pick a single cultural concept or commodity and watch how it travels, adapts, and transforms across state borders, connecting communities into a living network.</p>
+        </div>
+
+        <!-- Interactive Selector Box -->
+        <div class="bg-amber-50/90 p-8 rounded-3xl border-2 border-amber-200 shadow-xl backdrop-blur-sm space-y-6">
+            <div>
+                <label class="block font-bold mb-2 text-amber-900">Select Cultural Concept / Commodity</label>
+                <select id="idea-select" class="w-full p-4 border-2 border-amber-300 rounded-2xl bg-white text-gray-800 font-medium focus:outline-none focus:ring-2 focus:ring-orange-700">
+                    <option value="rice" selected>🍚 Rice: Agriculture, Climate & Festival Cuisine</option>
+                    <option value="tea">🍵 Tea: Plantation History & Social Rituals</option>
+                    <option value="silk">🧵 Silk: Handloom Weaving & Royal Attire</option>
+                    <option value="yoga">🧘 Yoga: Spiritual Practice & Philosophy</option>
+                    <option value="temple">🏛️ Temple Architecture: Dravidian to Nagara Styles</option>
+                    <option value="spices">🌶️ Spices: Global Maritime Trade & Cuisine</option>
+                </select>
+            </div>
+
+            <button onclick="trackIdeaJourney()" class="w-full py-4 bg-orange-800 text-white rounded-2xl font-bold text-lg hover:bg-orange-900 transition shadow-lg tracking-wide">
+                Track Idea Journey Across India
+            </button>
+        </div>
+
+        <!-- Result Display Box -->
+        <div id="idea-result" class="bg-white p-8 rounded-3xl border-2 border-amber-200 shadow-xl space-y-4">
+            <h3 class="text-2xl font-bold text-orange-900">Select a concept above to trace its pan-India journey.</h3>
+            <p class="text-gray-600">Discover how ideas transform as they cross regional landscapes.</p>
+        </div>
+    </main>
+
+    <!-- JavaScript Logic -->
+    <script>
+        const ideaDatabase = {
+            rice: {
+                title: "🍚 The Pan-India Journey of Rice Culture",
+                stops: [
+                    { state: "Assam", role: "Brahmaputra Valley: Sali rice cultivation, sticky rice traditions, and Bihu harvest feasting." },
+                    { state: "Bengal", role: "Ganges Delta: Gobindobhog aromatic rice, Panta Bhat, and community Durga Puja offerings." },
+                    { state: "Odisha", role: "Coastal Plains: Pakhala fermented rice tradition and temple culinary offerings at Puri." },
+                    { state: "Andhra Pradesh & Telangana", role: "Deccan Plateau: Sona Masuri rice staple paired with fiery Gongura curries." },
+                    { state: "Tamil Nadu", role: "Cauvery Delta: Ponni rice varieties and traditional Pongal harvest celebration dishes." },
+                    { state: "Kerala", role: "Malabar Coast: Red Matta rice paired with coconut stew and tropical sadya feasts." }
+                ]
+            },
+            tea: {
+                title: "🍵 The Pan-India Journey of Tea (Chai) Culture",
+                stops: [
+                    { state: "Assam", role: "Origin Hub: Vast emerald plantations along the Brahmaputra producing bold, malty CTC teas." },
+                    { state: "West Bengal", role: "Darjeeling Hills: High-altitude mist-kissed aromatic muscatel teas prized globally." },
+                    { state: "West Bengal (Kolkata)", role: "Urban Culture: Bharer Cha (tea served in terracotta clay cups) fostering intellectualadda conversations." },
+                    { state: "Maharashtra", role: "Mumbai Street Culture: Cutting Chai spiced with ginger and cardamom for bustling commuters." },
+                    { state: "Jammu & Kashmir", role: "Mountain Tradition: Noon Chai (pink salted tea) brewed with baking soda and milk in copper samovars." }
+                ]
+            },
+            silk: {
+                title: "🧵 The Pan-India Journey of Silk Weaving",
+                stops: [
+                    { state: "Assam", role: "Golden Muga and Pat silk handcrafted by indigenous weavers in traditional looms." },
+                    { state: "West Bengal", role: "Murshidabad and Bishnupur: Renowned Baluchari silk featuring mythological pallu narratives." },
+                    { state: "Uttar Pradesh", role: "Varanasi (Banaras): Luxurious Katan and Zardozi gold-brocade bridal weaves." },
+                    { state: "Gujarat", role: "Patan: Intricate Patola double-ikat silk weaving requiring months of precision." },
+                    { state: "Karnataka", role: "Mysore: Pure mulberry silk famed for royal luster and rich heritage borders." },
+                    { state: "Tamil Nadu", role: "Kanchipuram: Temple-border heavy silk sarees passed down across generations." }
+                ]
+            },
+            yoga: {
+                title: "🧘 The Pan-India Journey of Yoga & Philosophy",
+                stops: [
+                    { state: "Uttarakhand", role: "Rishikesh & Himalayas: Ancient ashrams, meditative caves along the Ganges, and spiritual awakening." },
+                    { state: "Uttar Pradesh", role: "Varanasi: Classical philosophical debates, breath control, and yogic integration with daily rituals." },
+                    { state: "Karnataka", role: "Mysore: Modern Ashtanga yoga revival and institutional lineage preservation." },
+                    { state: "Tamil Nadu", role: "Ancient Siddha yoga roots and traditional palm-leaf medical formulations." }
+                ]
+            },
+            temple: {
+                title: "🏛️ The Pan-India Journey of Temple Architecture",
+                stops: [
+                    { state: "Jammu & Kashmir", role: "Martand Sun Temple: Ancient stone architecture blending Gandhara and classical styles." },
+                    { state: "Odisha", role: "Bhubaneswar & Konark: Nagara style temple architecture with towering curvilinear spires (Deuls)." },
+                    { state: "Madhya Pradesh", role: "Khajuraho: Intricate sandstone sculptures depicting human life, art, and spirituality." },
+                    { state: "Maharashtra", role: "Ellora & Ajanta: Massive monolithic rock-cut cave temples carved directly out of basalt cliffs." },
+                    { state: "Tamil Nadu", role: "Thanjavur & Madurai: Dravidian architecture featuring towering ornate Gopurams and pillared halls." }
+                ]
+            },
+            spices: {
+                title: "🌶️ The Pan-India Journey of Spices & Trade",
+                stops: [
+                    { state: "Kerala", role: "Malabar Coast: The ancient global spice capital exporting black pepper and cardamom." },
+                    { state: "Karnataka", role: "Western Ghats: Major hill plantations cultivating green cardamom and coffee." },
+                    { state: "Andhra Pradesh", role: "Guntur: India's red chilli powerhouse driving fiery regional culinary heat." },
+                    { state: "Rajasthan", role: "Desert Trading Posts: Cumin, coriander, and fennel spice caravans linking western trade." }
+                ]
+            }
+        };
+
+        function trackIdeaJourney() {
+            const ideaKey = document.getElementById('idea-select').value;
+            const resultBox = document.getElementById('idea-result');
+
+            const data = ideaDatabase[ideaKey] || {
+                title: "Pan-India Cultural Concept Tracking",
+                stops: [
+                    { state: "North India", role: "Historical roots and adaptation across Gangetic plains." },
+                    { state: "Central & West India", role: "Commercial trade exchange and festival integration." },
+                    { state: "South & East India", role: "Maritime evolution, coastal adaptation, and local craft synthesis." }
+                ]
+            };
+
+            let stopsHtml = data.stops.map((stop, index) => `
+                <div class="flex items-start space-x-4 p-4 bg-amber-50 rounded-2xl border border-amber-200">
+                    <span class="bg-orange-800 text-white font-bold w-8 h-8 rounded-full flex items-center justify-center shrink-0">${index + 1}</span>
+                    <div>
+                        <strong class="text-orange-900 text-base">${stop.state}</strong>
+                        <p class="text-gray-700 text-sm mt-1">${stop.role}</p>
+                    </div>
+                </div>
+            `).join('');
+
+            resultBox.innerHTML = `
+                <div class="space-y-6">
+                    <div class="border-b border-amber-200 pb-3">
+                        <span class="bg-orange-100 text-orange-900 px-3 py-1 rounded-full text-xs font-bold uppercase">Idea Journey Active</span>
+                        <h3 class="text-2xl font-bold text-orange-900 mt-2">${data.title}</h3>
+                    </div>
+                    <div class="space-y-4">
+                        ${stopsHtml}
+                    </div>
+                    <p class="text-xs text-amber-800 italic">✓ Traced through cultural geography, historical trade routes, and ethnographic records.</p>
+                </div>
+            `;
+        }
+
+        window.onload = trackIdeaJourney;
+    </script>
+</body>
+</html>
