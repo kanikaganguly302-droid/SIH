@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tour Planner - BharatVividha</title>
+    <!-- Tailwind CSS CDN for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+
+    <!-- Header Navigation -->
+    <header class="bg-white shadow-sm border-b border-gray-200">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold" style="color: #9a3412;">BharatVividha</a>
+            <nav class="space-x-6">
+                <a href="index.html" class="text-gray-600 hover:text-orange-800 font-medium">Home</a>
+                <a href="tour-planner.html" class="text-orange-800 font-semibold">Tour Planner</a>
+                <a href="gov-initiatives.html" class="text-gray-600 hover:text-orange-800 font-medium">Gov Initiatives</a>
+                <a href="ai-translator.html" class="text-gray-600 hover:text-orange-800 font-medium">AI Translator</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-10 max-w-3xl">
+        <h1 class="text-3xl font-bold mb-2" style="color: #9a3412;">Heritage Tour Planner</h1>
+        <p class="text-gray-600 mb-8">Plan your customized cultural journey across India's sacred geographies and architectural trails.</p>
+        
+        <!-- Planner Form Box -->
+        <div class="bg-amber-50 p-8 rounded-2xl border border-amber-200 shadow-sm space-y-6">
+            <div>
+                <label class="block font-semibold mb-2 text-gray-700">Select Destination / Region</label>
+                <select id="destination" class="w-full p-3 border border-gray-300 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-orange-600">
+                    <option value="malda">Malda & Gour Heritage Trail (Adina, Dakhil Darwaza)</option>
+                    <option value="delhi">Delhi Sultanate & Mughal Architecture Trail</option>
+                    <option value="varanasi">Varanasi Spiritual & Ghats Circuit</option>
+                </select>
+            </div>
+
+            <div>
+                <label class="block font-semibold mb-2 text-gray-700">Duration (Days)</label>
+                <input type="number" id="days" value="3" min="1" max="14" class="w-full p-3 border border-gray-300 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-orange-600">
+            </div>
+
+            <button type="button" onclick="generateItinerary()" class="w-full py-3 bg-orange-700 text-white rounded-xl font-semibold hover:bg-orange-800 transition shadow-md">
+                Generate Custom Itinerary
+            </button>
+        </div>
+
+        <!-- Result Section -->
+        <div id="itinerary-result" class="mt-8"></div>
+    </main>
+
+    <!-- JavaScript Logic -->
+    <script>
+        function generateItinerary() {
+            const dest = document.getElementById('destination').value;
+            const days = document.getElementById('days').value;
+            const resultDiv = document.getElementById('itinerary-result');
+            
+            let details = "";
+            let destinationName = "";
+
+            if (dest === 'malda') {
+                destinationName = "Malda & Gour Heritage Trail";
+                details = `Day 1: Arrive in Malda, visit the historic Malda Museum to explore regional stone inscriptions and artifacts.<br>
+                           Day 2: Explore the medieval ruins of Gour, including Adina Mosque and Dakhil Darwaza.<br>
+                           Day 3: Experience local silk weaving traditions and interact with local artisans.`;
+            } else if (dest === 'delhi') {
+                destinationName = "Delhi Sultanate & Mughal Trail";
+                details = `Day 1: Visit Qutb Minar complex and Humayun's Tomb.<br>
+                           Day 2: Explore Old Delhi heritage walks, Jama Masjid, and Red Fort archives.<br>
+                           Day 3: Discover the architectural marvels of New Delhi museums and cultural centers.`;
+            } else {
+                destinationName = "Varanasi Spiritual Circuit";
+                details = `Day 1: Evening Ganga Aarti and heritage walk along the ancient ghats.<br>
+                           Day 2: Visit Sarnath archaeological site and local museum.<br>
+                           Day 3: Explore ancient temples and traditional textile markets.`;
+            }
+            
+            resultDiv.innerHTML = `
+                <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-md">
+                    <h3 class="text-xl font-bold text-orange-800 mb-3">Your ${days}-Day Itinerary: ${destinationName}</h3>
+                    <p class="text-gray-700 leading-relaxed">${details}</p>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Translator - BharatVividha</title>
+    <!-- Tailwind CSS CDN for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+
+    <!-- Header Navigation -->
+    <header class="bg-white shadow-sm border-b border-gray-200">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold" style="color: #9a3412;">BharatVividha</a>
+            <nav class="space-x-6">
+                <a href="index.html" class="text-gray-600 hover:text-orange-800 font-medium">Home</a>
+                <a href="tour-planner.html" class="text-gray-600 hover:text-orange-800 font-medium">Tour Planner</a>
+                <a href="gov-initiatives.html" class="text-gray-600 hover:text-orange-800 font-medium">Gov Initiatives</a>
+                <a href="ai-translator.html" class="text-orange-800 font-semibold">AI Translator</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-10 max-w-4xl">
+        <h1 class="text-3xl font-bold mb-2" style="color: #9a3412;">Cultural & Regional AI Translator</h1>
+        <p class="text-gray-600 mb-8">Translate historical texts, local dialects, and archival terms instantly across regional linguistic contexts.</p>
+        
+        <!-- Translator Box -->
+        <div class="bg-amber-50 p-8 rounded-2xl border border-amber-200 shadow-sm space-y-6">
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Input Section -->
+                <div class="flex flex-col">
+                    <label class="block font-semibold mb-2 text-gray-700">Source Text / Historical Term</label>
+                    <textarea id="source-text" placeholder="Enter text in English, Bengali, or local script..." class="w-full h-40 p-4 border border-gray-300 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-orange-600 resize-none"></textarea>
+                </div>
+
+                <!-- Output Section -->
+                <div class="flex flex-col">
+                    <label class="block font-semibold mb-2 text-gray-700">Translated Cultural Context</label>
+                    <div id="output-box" class="w-full h-40 p-4 bg-white border border-gray-300 rounded-xl text-gray-700 overflow-y-auto">
+                        Translation output will appear here...
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Button -->
+            <button onclick="runTranslation()" class="w-full py-3 bg-orange-700 text-white rounded-xl font-semibold hover:bg-orange-800 transition shadow-md">
+                Translate via AI Engine
+            </button>
+        </div>
+    </main>
+
+    <!-- JavaScript Logic -->
+    <script>
+        function runTranslation() {
+            const text = document.getElementById('source-text').value.trim();
+            const outputBox = document.getElementById('output-box');
+
+            if (!text) {
+                outputBox.innerHTML = `<span class="text-red-500">Please enter some text to translate.</span>`;
+                return;
+            }
+
+            outputBox.innerHTML = `<span class="text-orange-700 font-medium">Processing translation...</span>`;
+
+            // Simulated AI translation response for documentation & demo
+            setTimeout(() => {
+                outputBox.innerHTML = `
+                    <strong class="text-orange-800">Contextual Translation:</strong><br>
+                    "${text}" has been processed through the regional linguistic database, bridging modern terminology with indigenous historical archives.
+                `;
+            }, 600);
+        }
+    </script>
+</body>
+</html>
