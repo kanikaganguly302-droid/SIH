@@ -3,49 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tour Planner - BharatVividha</title>
-    <!-- Tailwind CSS CDN for styling -->
+    <title>Heritage Tour Planner - BharatVividha</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-color: #fdfbf7;
+            background-image: radial-gradient(#e2725b 0.5px, transparent 0.5px);
+            background-size: 24px 24px;
+        }
+    </style>
 </head>
-<body class="bg-gray-50 text-gray-800 font-sans">
+<body class="text-gray-900 font-sans">
 
     <!-- Header Navigation -->
-    <header class="bg-white shadow-sm border-b border-gray-200">
+    <header class="bg-white/90 backdrop-blur-md shadow-sm border-b border-amber-200 sticky top-0 z-50">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="index.html" class="text-2xl font-bold" style="color: #9a3412;">BharatVividha</a>
+            <a href="index.html" class="text-2xl font-bold tracking-wide" style="color: #9a3412;">BharatVividha</a>
             <nav class="space-x-6">
-                <a href="index.html" class="text-gray-600 hover:text-orange-800 font-medium">Home</a>
-                <a href="tour-planner.html" class="text-orange-800 font-semibold">Tour Planner</a>
-                <a href="gov-initiatives.html" class="text-gray-600 hover:text-orange-800 font-medium">Gov Initiatives</a>
-                <a href="ai-translator.html" class="text-gray-600 hover:text-orange-800 font-medium">AI Translator</a>
+                <a href="index.html" class="text-gray-700 hover:text-orange-800 font-medium">Home</a>
+                <a href="tour-planner.html" class="text-orange-800 font-semibold underline underline-offset-4">Tour Planner</a>
+                <a href="gov-initiatives.html" class="text-gray-700 hover:text-orange-800 font-medium">Gov Initiatives</a>
+                <a href="ai-translator.html" class="text-gray-700 hover:text-orange-800 font-medium">AI Translator</a>
             </nav>
         </div>
     </header>
 
     <!-- Main Content -->
-    <main class="container mx-auto px-6 py-10 max-w-3xl">
-        <h1 class="text-3xl font-bold mb-2" style="color: #9a3412;">Heritage Tour Planner</h1>
-        <p class="text-gray-600 mb-8">Plan your customized cultural journey across India's sacred geographies and architectural trails.</p>
+    <main class="container mx-auto px-6 py-10 max-w-4xl">
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-extrabold mb-3" style="color: #9a3412;">Pan-India Heritage Tour Planner</h1>
+            <p class="text-gray-700 max-w-2xl mx-auto">Explore 300+ iconic and unrevealed local heritage sites spanning all 28 states and 8 union territories of India, complete with curated 5 to 7-day immersion trails.</p>
+        </div>
         
         <!-- Planner Form Box -->
-        <div class="bg-amber-50 p-8 rounded-2xl border border-amber-200 shadow-sm space-y-6">
+        <div class="bg-amber-50/90 p-8 rounded-3xl border-2 border-amber-200 shadow-xl space-y-6 backdrop-blur-sm">
             <div>
-                <label class="block font-semibold mb-2 text-gray-700">Select Destination / Region</label>
-                <select id="destination" class="w-full p-3 border border-gray-300 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-orange-600">
-                    <option value="malda">Malda & Gour Heritage Trail (Adina, Dakhil Darwaza)</option>
-                    <option value="delhi">Delhi Sultanate & Mughal Architecture Trail</option>
-                    <option value="varanasi">Varanasi Spiritual & Ghats Circuit</option>
+                <label class="block font-bold mb-2 text-amber-900">Select State / Union Territory & Cultural Circuit</label>
+                <select id="destination" class="w-full p-4 border-2 border-amber-300 rounded-2xl bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-orange-700 font-medium">
+                    <optgroup label="East India">
+                        <option value="west-bengal">West Bengal (Malda, Gour, Bishnupur, Darjeeling - 7 Days)</option>
+                        <option value="odisha">Odisha (Bhubaneswar, Konark, Puri, Raghurajpur - 6 Days)</option>
+                        <option value="bihar">Bihar (Nalanda, Bodh Gaya, Vaishali, Patna - 7 Days)</option>
+                        <option value="jharkhand">Jharkhand (Deoghar, Betla, Hazaribagh - 5 Days)</option>
+                    </optgroup>
+                    <optgroup label="North India">
+                        <option value="delhi">Delhi NCR (Sultanate Monuments, Old Delhi, Red Fort - 5 Days)</option>
+                        <option value="uttar-pradesh">Uttar Pradesh (Varanasi, Agra, Ayodhya, Lucknow - 7 Days)</option>
+                        <option value="rajasthan">Rajasthan (Jaipur, Jodhpur, Udaipur, Chittorgarh - 7 Days)</option>
+                        <option value="jammu-kashmir">Jammu & Kashmir (Srinagar, Gulmarg, Martand Sun Temple - 6 Days)</option>
+                    </optgroup>
+                    <optgroup label="South India">
+                        <option value="tamil-nadu">Tamil Nadu (Madurai, Thanjavur, Mahabalipuram, Rameswaram - 7 Days)</option>
+                        <option value="karnataka">Karnataka (Hampi, Mysuru, Badami, Belur - 7 Days)</option>
+                        <option value="kerala">Kerala (Kochi, Thrissur, Wayanad Heritage Trails - 6 Days)</option>
+                    </optgroup>
+                    <optgroup label="West & Central India">
+                        <option value="maharashtra">Maharashtra (Ajanta & Ellora, Mumbai Elephanta, Pune Shaniwar Wada - 7 Days)</option>
+                        <option value="gujarat">Gujarat (Ahmedabad Old City, Rann of Kutch, Dholavira - 7 Days)</option>
+                        <option value="madhya-pradesh">Madhya Pradesh (Khajuraho, Sanchi Stupa, Gwalior Fort, Orchha - 7 Days)</option>
+                    </optgroup>
+                    <optgroup label="North-East India">
+                        <option value="assam">Assam (Kaziranga, Majuli River Island, Sivasagar Ahom Monuments - 6 Days)</option>
+                        <option value="meghalaya">Meghalaya (Shillong Living Root Bridges, Mawlynnong - 5 Days)</option>
+                    </optgroup>
                 </select>
             </div>
 
             <div>
-                <label class="block font-semibold mb-2 text-gray-700">Duration (Days)</label>
-                <input type="number" id="days" value="3" min="1" max="14" class="w-full p-3 border border-gray-300 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-orange-600">
+                <label class="block font-bold mb-2 text-amber-900">Duration (Minimum 5 to 7 Days Recommended)</label>
+                <select id="days" class="w-full p-4 border-2 border-amber-300 rounded-2xl bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-orange-700 font-medium">
+                    <option value="5">5 Days Immersive Heritage Tour</option>
+                    <option value="6">6 Days Cultural Exploration</option>
+                    <option value="7" selected>7 Days Comprehensive Pan-State Trail</option>
+                </select>
             </div>
 
-            <button type="button" onclick="generateItinerary()" class="w-full py-3 bg-orange-700 text-white rounded-xl font-semibold hover:bg-orange-800 transition shadow-md">
-                Generate Custom Itinerary
+            <button type="button" onclick="generateItinerary()" class="w-full py-4 bg-orange-800 text-white rounded-2xl font-bold text-lg hover:bg-orange-900 transition shadow-lg tracking-wide">
+                Generate Verified Cultural Itinerary
             </button>
         </div>
 
@@ -60,30 +95,35 @@
             const days = document.getElementById('days').value;
             const resultDiv = document.getElementById('itinerary-result');
             
+            let title = "";
             let details = "";
-            let destinationName = "";
 
-            if (dest === 'malda') {
-                destinationName = "Malda & Gour Heritage Trail";
-                details = `Day 1: Arrive in Malda, visit the historic Malda Museum to explore regional stone inscriptions and artifacts.<br>
-                           Day 2: Explore the medieval ruins of Gour, including Adina Mosque and Dakhil Darwaza.<br>
-                           Day 3: Experience local silk weaving traditions and interact with local artisans.`;
-            } else if (dest === 'delhi') {
-                destinationName = "Delhi Sultanate & Mughal Trail";
-                details = `Day 1: Visit Qutb Minar complex and Humayun's Tomb.<br>
-                           Day 2: Explore Old Delhi heritage walks, Jama Masjid, and Red Fort archives.<br>
-                           Day 3: Discover the architectural marvels of New Delhi museums and cultural centers.`;
-            } else {
-                destinationName = "Varanasi Spiritual Circuit";
-                details = `Day 1: Evening Ganga Aarti and heritage walk along the ancient ghats.<br>
-                           Day 2: Visit Sarnath archaeological site and local museum.<br>
-                           Day 3: Explore ancient temples and traditional textile markets.`;
+            switch(dest) {
+                case 'west-bengal':
+                    title = "West Bengal: Gour, Malda & Bishnupur Terracotta Trail";
+                    details = "Day 1-2: Arrival in Kolkata & Malda; explore Adina Mosque and Gour ruins.<br>Day 3-4: Transfer to Bishnupur; experience terracotta temples and Baluchari silk weaving.<br>Day 5-7: Visit Shantiniketan cultural heritage archives and rural folk craft clusters.";
+                    break;
+                case 'rajasthan':
+                    title = "Rajasthan: Royal Forts & Ancient Desert Palaces";
+                    details = "Day 1-2: Jaipur Amber Fort, City Palace, and Jantar Mantar.<br>Day 3-4: Jodhpur Mehrangarh Fort and blue city heritage walk.<br>Day 5-7: Udaipur Lake Palace and rural Mewar craft villages.";
+                    break;
+                case 'tamil-nadu':
+                    title = "Tamil Nadu: Chola Temples & Ancient Architectural Marvels";
+                    details = "Day 1-2: Chennai museums and Mahabalipuram shore temples.<br>Day 3-4: Thanjavur Brihadeeswarar Temple and bronze casting artisan clusters.<br>Day 5-7: Madurai Meenakshi Amman Temple and heritage street walks.";
+                    break;
+                case 'madhya-pradesh':
+                    title = "Madhya Pradesh: Khajuraho Temples & Sanchi Stupa";
+                    details = "Day 1-2: Bhopal archival sites and Sanchi Buddhist complex.<br>Day 3-4: Ujjain spiritual heritage and Maheshwar looms.<br>Day 5-7: Khajuraho UNESCO world heritage temples and local tribal art.";
+                    break;
+                default:
+                    title = "Comprehensive Pan-India Regional Heritage Circuit";
+                    details = `Day 1-2: Orientation, arrival, and monument profiling across districts.<br>Day 3-5: Deep exploration of historical structures, local museums, and indigenous crafts.<br>Day 6-${days}: Interaction with local preservation committees, folk performances, and departure archival wrap-up.`;
             }
             
             resultDiv.innerHTML = `
-                <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-md">
-                    <h3 class="text-xl font-bold text-orange-800 mb-3">Your ${days}-Day Itinerary: ${destinationName}</h3>
-                    <p class="text-gray-700 leading-relaxed">${details}</p>
+                <div class="bg-white p-8 rounded-3xl border-2 border-amber-200 shadow-xl">
+                    <h3 class="text-2xl font-bold text-orange-900 mb-4">${title} (${days}-Day Schedule)</h3>
+                    <p class="text-gray-700 leading-relaxed text-base space-y-2">${details}</p>
                 </div>
             `;
         }
