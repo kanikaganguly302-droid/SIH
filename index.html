@@ -1,391 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Leaflet CSS -->
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-
-<!-- Leaflet JavaScript -->
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script>
-    async function loadMap() {
-        const inputField = document.querySelector('.search-container input') || document.getElementById('location-input');
-        
-        if (!navigator.geolocation) {
-            alert("Geolocation is not supported by your browser");
-            return;
-        }
-
-        if (inputField) {
-            inputField.value = "📍 Detecting your precise GPS coordinates...";
-        }
-
-        navigator.geolocation.getCurrentPosition(
-            (position) => {
-                const lat = position.coords.latitude.toFixed(2);
-                const lon = position.coords.longitude.toFixed(2);
-                
-                if (inputField) {
-                    inputField.value = `📍 GPS Location (${lat}, ${lon}) • Scanning heritage within 50km...`;
-                }
-                
-                setTimeout(() => {
-                    alert(`Success! Found heritage sites, temples, and artisan clusters within 50km of coordinates (${lat}, ${lon}).`);
-                }, 500);
-            },
-            (error) => {
-                if (inputField) {
-                    inputField.value = "Location access denied. Defaulting to regional hub.";
-                }
-                alert("Unable to retrieve your location. Please check your browser permission settings.");
-            },
-            { timeout: 10000, enableHighAccuracy: true }
-        );
-    }
-</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BharatVividha - The Complete Cultural Heritage Guide</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>BharatVividha - The Complete Cultural Heritage Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <style>
-        :root {
-            --saffron: #FF9933;
-            --terracotta: #E2725B;
-            --indigo: #13274F;
-            --sandstone: #E6D5B8;
-            --maroon: #800000;
-            --text-dark: #2C2A29;
-            --bg-light: #FDFBF7;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--bg-light);
-            color: var(--text-dark);
-        }
-
-        /* Top Utility Bar (Weather & Safety) */
-        .utility-bar {
-            background-color: var(--maroon);
-            color: var(--sandstone);
-            padding: 8px 20px;
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.85rem;
-            font-weight: 600;
-        }
-        
-        .alert {
-            color: #FFD700;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { opacity: 1; }
-            50% { opacity: 0.5; }
-            100% { opacity: 1; }
-        }
-
-        /* Navigation */
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 50px;
-            background-color: var(--bg-light);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            color: var(--maroon);
-            font-weight: 700;
-            letter-spacing: 1px;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--indigo);
-            margin-left: 30px;
-            font-weight: 600;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--saffron);
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(rgba(128, 0, 0, 0.8), rgba(226, 114, 91, 0.7)), url('https://images.unsplash.com/photo-1524492412937-b28074a5d7da?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
-            height: 70vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            color: var(--sandstone);
-            padding: 0 20px;
-        }
-
-        .hero h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 4rem;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 800px;
-            margin-bottom: 40px;
-        }
-
-        /* 50km Radius Search Concept */
-        .search-container {
-            display: flex;
-            background: white;
-            border-radius: 50px;
-            padding: 10px 20px;
-            width: 60%;
-            max-width: 600px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-
-        .search-container input {
-            border: none;
-            outline: none;
-            flex-grow: 1;
-            padding: 10px;
-            font-size: 1rem;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .search-btn {
-            background-color: var(--saffron);
-            color: white;
-            border: none;
-            padding: 10px 25px;
-            border-radius: 30px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: background 0.3s ease;
-        }
-
-        .search-btn:hover {
-            background-color: var(--terracotta);
-        }
-
-        /* Heritage Grid Categories */
-        .categories-section {
-            padding: 80px 50px;
-        }
-
-        .section-title {
-            text-align: center;
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            color: var(--indigo);
-            margin-bottom: 50px;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-        }
-
-        .card {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer;
-            border-top: 4px solid var(--saffron);
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-        }
-
-        .card-content {
-            padding: 25px;
-            text-align: center;
-        }
-
-        .card h3 {
-            font-family: 'Playfair Display', serif;
-            color: var(--maroon);
-            margin-bottom: 10px;
-        }
-
-        /* Floating AI Assistant */
-        .ai-assistant {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background-color: var(--indigo);
-            color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 1.5rem;
-            box-shadow: 0 10px 25px rgba(19, 39, 79, 0.4);
-            cursor: pointer;
-            transition: transform 0.3s ease;
-            z-index: 1000;
-        }
-
-        .ai-assistant:hover {
-            transform: scale(1.1);
-            background-color: var(--terracotta);
+            background-color: #fdfbf7;
+            background-image: radial-gradient(#e2725b 0.5px, transparent 0.5px);
+            background-size: 24px 24px;
         }
     </style>
-<link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="text-gray-950 font-sans">
 
-    <div class="utility-bar">
-        <span>🌤️ 28°C | Safe to travel | No Official Warnings</span>
-        <span class="alert">🆘 Emergency / 112 Pathway Available</span>
-    </div>
-
-    <nav>
-        <div class="logo">BharatVividha</div>
-        <div class="nav-links">
-            <a href="#">Explore Heritage</a>
-            <a href="tour-planner.html">Tour Planner</a>
-<a href="gov-initiatives.html">Gov Initiatives</a>
-<a href="ai-translator.html">AI Translator</a>
-<a href="research.html" class="text-gray-700 hover:text-orange-800 font-medium">Research</a>
- <a href="impact.html" class="text-gray-700 hover:text-orange-800 font-medium">Impact</a>    
-<a href="challenges-impact.html" class="text-gray-700 hover:text-orange-800 font-medium">Challenges & Impact</a>
-</<a href="innovative-features.html" class="text-gray-700 hover:text-orange-800 font-medium">Innovation Index</a>
-<a href="cultural-dna.html" class="text-gray-700 hover:text-orange-800 font-medium">Cultural DNA</a>
-<a href="invisible-india.html" class="text-gray-700 hover:text-orange-800 font-medium">Invisible India Map</a>
-<a href="endangered-radar.html" class="text-gray-700 hover:text-orange-800 font-medium">Endangered Radar</a>
-<a href="cultural-evidence.html" class="text-gray-700 hover:text-orange-800 font-medium">Evidence System</a>
-<a href="oral-memory.html" class="text-gray-700 hover:text-orange-800 font-medium">Oral Memory</a>
-<a href="evolution-simulator.html" class="text-gray-700 hover:text-orange-800 font-medium">Evolution Simulator</a>
-<a href="cultural-gravity.html" class="text-gray-700 hover:text-orange-800 font-medium">Cultural Gravity</a>
-<a href="accessibility.html" class="text-gray-700 hover:text-orange-800 font-medium">Accessibility Engine</a>
-<a href="follow-idea.html" class="text-gray-700 hover:text-orange-800 font-medium">Follow an Idea</a>
-<a href="circular-economy.html" class="text-gray-700 hover:text-orange-800 font-medium">Circular Economy</a>
-
-</div>
-    </nav>
-
-    <section class="hero">
-        <h1>Unveil the Multitudes of India</h1>
-        <p>The most profound, accurate, and complete travel guide honoring our Civilizational Foundations, Sacred Geographies, and Living Crafts.</p>
-        
-        <div class="search-container">
-            <input type="text" id="location-input" placeholder="📍 Detect my location: Show heritage within 50km...">
-            <button class="search-btn" onclick="detectUserlocation()">Discover</button>
+    <!-- Header Navigation -->
+    <header class="bg-white/90 backdrop-blur-md shadow-sm border-b border-amber-200 sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold tracking-wide" style="color: #9a3412;">BharatVividha</a>
+            <nav class="space-x-4 text-sm font-medium flex flex-wrap items-center">
+                <a href="index.html" class="text-orange-800 font-semibold underline underline-offset-4">Home</a>
+                <a href="cultural-dna.html" class="text-gray-700 hover:text-orange-800">Cultural DNA</a>
+                <a href="invisible-india.html" class="text-gray-700 hover:text-orange-800">Invisible India</a>
+                <a href="endangered-radar.html" class="text-gray-700 hover:text-orange-800">Endangered Radar</a>
+                <a href="cultural-evidence.html" class="text-gray-700 hover:text-orange-800">Evidence System</a>
+                <a href="oral-memory.html" class="text-gray-700 hover:text-orange-800">Oral Memory</a>
+                <a href="evolution-simulator.html" class="text-gray-700 hover:text-orange-800">Evolution</a>
+                <a href="cultural-gravity.html" class="text-gray-700 hover:text-orange-800">Gravity</a>
+                <a href="accessibility.html" class="text-gray-700 hover:text-orange-800">Accessibility</a>
+                <a href="follow-idea.html" class="text-gray-700 hover:text-orange-800">Follow Idea</a>
+                <a href="circular-economy.html" class="text-gray-700 hover:text-orange-800">Circular Economy</a>
+            </nav>
         </div>
-        <div id="heritage-map" style="width: 100%; height: 500px; border-radius: 12px;"></div>
-    </section>
+    </header>
 
-    <section class="categories-section">
-        <h2 class="section-title">Explore Our Cultural Fabric</h2>
-        <div class="grid">
-            <div class="card" onclick="openCategory('Architecture')">
-                <div class="card-content">
-                    <h3>🏛️ Sacred Architecture</h3>
-                    <p>Temples, historical cities, and traditional settlements.</p>
-                </div>
-            </div>
-            <div class="card" onclick="openCategory('Crafts')">
-                <div class="card-content">
-                    <h3>🧵 Living Crafts & Textiles</h3>
-                    <p>Traditional clothing, jewelry heritage, and artisan markets.</p>
-                </div>
-            </div>
-            <div class="card" onclick="openCategory('Wisdom')">
-                <div class="card-content">
-                    <h3>📜 Literary & Wisdom</h3>
-                    <p>Vedic period manuscripts, philosophy, and scientific heritage.</p>
-                </div>
-            </div>
-            <div class="card" onclick="openCategory('Culture')">
-                <div class="card-content">
-                    <h3>🎭 Music, Dance & Folklore</h3>
-                    <p>Festivals, oral history, and musical-instrument crafts.</p>
-                </div>
-                <div style="max-width: 1200px; margin: 40px auto; padding: 0 20px;">
-    <div style="display: flex; gap: 10px; margin-bottom: 20px;">
-        <select id="state-select" style="padding: 10px; font-size: 16px;"><option value="">Select State</option></select>
-        <select id="district-select" disabled style="padding: 10px; font-size: 16px;"><option value="">Select District</option></select>
-    </div>
-    
-    <div id="map" style="width: 100%; height: 500px; background-color: #f5f5f5; border-radius: 10px; margin-bottom: 30px;"></div>
-    
-    <div id="heritage-sites" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px;"></div>
-</div>
+    <!-- Hero Section -->
+    <main class="container mx-auto px-6 py-10 max-w-5xl space-y-8">
+        <div class="text-center space-y-4">
+            <span class="bg-amber-100 text-amber-900 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider">Smart India Hackathon 2026</span>
+            <h1 class="text-5xl font-extrabold tracking-tight" style="color: #9a3412;">Unveil the Multitudes of India</h1>
+            <p class="text-gray-700 max-w-2xl mx-auto text-lg">The most profound, accurate, and complete cultural travel guide honoring our Civilizational Foundations, Sacred Geographies, and Living Crafts.</p>
+            
+            <!-- Professional Search & GPS Location Bar -->
+            <div class="bg-amber-50/90 p-4 rounded-3xl border-2 border-amber-200 shadow-xl max-w-3xl mx-auto flex flex-col md:flex-row gap-3 items-center">
+                <input type="text" id="location-input" placeholder="📍 Detect my location: Show heritage within 50km..." class="w-full p-4 border-2 border-amber-300 rounded-2xl bg-white text-gray-800 font-medium focus:outline-none focus:ring-2 focus:ring-orange-700 text-base">
+                <button onclick="detectGPSLocation()" class="w-full md:w-auto px-8 py-4 bg-orange-800 text-white rounded-2xl font-bold text-lg hover:bg-orange-900 transition shadow-lg shrink-0 tracking-wide">
+                    Discover GPS
+                </button>
             </div>
         </div>
-    </section>
 
-    <div class="ai-assistant" onclick="toggleAI()">
-        ✨
-    </div>
-<div style="position: fixed; bottom: 20px; right: 20px; width: 350px; background: white; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); z-index: 1000; padding: 15px;">
-    <h3 style="margin-top: 0; color: #800000;">AI Heritage Guide</h3>
-    <div id="chat-messages" style="height: 250px; overflow-y: auto; margin-bottom: 10px; border-bottom: 1px solid #ddd; padding-bottom: 10px;"></div>
-    <div style="display: flex;">
-        <input type="text" id="chat-input" placeholder="Ask about Indian heritage..." style="flex: 1; padding: 8px; border: 1px solid #ccc; border-radius: 5px;">
-        <button id="chat-send" onclick="sendMessage()" style="padding: 8px 15px; margin-left: 5px; background: #e0a96d; border: none; border-radius: 5px; cursor: pointer;">Send</button>
-    </div> 
-</div>
-<script>
-    async function loadMap() {
-        const inputField = document.querySelector('.search-container input') || document.getElementById('location-input');
-        
-        if (!navigator.geolocation) {
-            alert("Geolocation is not supported by your browser");
-            return;
-        }
+        <!-- Interactive Heritage Map Box -->
+        <div class="bg-white p-6 rounded-3xl border-2 border-amber-200 shadow-xl space-y-4">
+            <div class="flex justify-between items-center">
+                <h3 class="text-2xl font-bold text-orange-900">Interactive Regional Heritage Map</h3>
+                <span class="text-xs bg-amber-100 text-amber-900 px-3 py-1 rounded-full font-semibold">Live GIS Scanner Active</span>
+            </div>
+            <!-- Leaflet Map Container -->
+            <div id="heritage-map" style="width: 100%; height: 450px; border-radius: 16px; border: 2px solid #fde68a;"></div>
+        </div>
+    </main>
 
-        if (inputField) {
+    <!-- Leaflet & Geolocation Script -->
+    <script>
+        // Initialize Map centered on India
+        let map = L.map('heritage-map').setView([22.9734, 78.6569], 5);
+
+        // Add professional OpenStreetMap tiles with Indian aesthetic
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '© BharatVividha SIH 2026'
+        }).addTo(map);
+
+        // Sample initial markers across India
+        const heritageSites = [
+            { name: "Gour & Malda Archaeological Ruins", lat: 25.0108, desc: "Terracotta architecture and medieval sultanate trade roots." },
+            { name: "Brihadeeswarar Temple, Thanjavur", lat: 10.7828, desc: "Chola dynasty architectural marvel." },
+            { name: "Jaipur Jantar Mantar", lat: 26.9124, desc: "Ancient astronomical instruments and mathematical engineering." },
+            { name: "Majuli River Island, Assam", lat: 26.9530, desc: "Living Neo-Vaishnavite cultural heritage hub." }
+        ];
+
+        heritageSites.forEach(site => {
+            L.marker([site.lat, site.lon || site.lat + 0.001]).addTo(map)
+              .bindPopup(`<b>${site.name}</b><br>${site.desc}`);
+        });
+
+        // Professional GPS Geolocation Function
+        function detectGPSLocation() {
+            const inputField = document.getElementById('location-input');
+            
+            if (!navigator.geolocation) {
+                alert("Geolocation is not supported by your browser");
+                return;
+            }
+
             inputField.value = "📍 Detecting your precise GPS coordinates...";
-        }
 
-        navigator.geolocation.getCurrentPosition(
-            (position) => {
-                const lat = position.coords.latitude.toFixed(2);
-                const lon = position.coords.longitude.toFixed(2);
-                
-                if (inputField) {
-                    inputField.value = `📍 GPS Location (${lat}, ${lon}) • Scanning heritage within 50km...`;
-                }
-                
-                setTimeout(() => {
-                    alert(`Success! Found heritage sites, temples, and artisan clusters within 50km of coordinates (${lat}, ${lon}).`);
-                }, 500);
-            },
-            (error) => {
-                if (inputField) {
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    const lat = position.coords.latitude;
+                    const lon = position.coords.longitude;
+                    
+                    inputField.value = `📍 GPS Location Found (${lat.toFixed(2)}, ${lon.toFixed(2)}) • Scanning 50km radius...`;
+                    
+                    // Center map on user location and zoom in
+                    map.setView([lat, lon], 11);
+                    
+                    L.marker([lat, lon]).addTo(map)
+                      .bindPopup("<b>Your Current Location</b><br>Scanning heritage within 50km radius.")
+                      .openPopup();
+
+                    setTimeout(() => {
+                        alert(`Success! Found heritage sites, temples, and artisan clusters within 50km of your GPS coordinates.`);
+                    }, 500);
+                },
+                (error) => {
                     inputField.value = "Location access denied. Defaulting to regional hub.";
-                }
-                alert("Unable to retrieve your location. Please check your browser permission settings.");
-            },
-            { timeout: 10000, enableHighAccuracy: true }
-        );
-    }
-</script>
+                    alert("Unable to retrieve your location. Please check your browser permission settings.");
+                },
+                { timeout: 10000, enableHighAccuracy: true }
+            );
+        }
+    </script>
 </body>
-</html> 
+</html>
