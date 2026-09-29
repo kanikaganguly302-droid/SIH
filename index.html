@@ -196,8 +196,16 @@
             { name: "Majuli River Island, Assam", lat: 26.9530, lon: 94.1636, desc: "Living Neo-Vaishnavite cultural heritage hub." }
         ];
 
+        // Clean Red Marker Dots
+        const redIcon = L.divIcon({
+            className: 'custom-red-marker',
+            html: '<div style="background-color: #dc2626; width: 16px; height: 16px; border-radius: 50%; border: 2px solid white; box-shadow: 0 0 4px rgba(0,0,0,0.4);"></div>',
+            iconSize: [16, 16],
+            iconAnchor: [8, 8]
+        });
+
         heritageSites.forEach(site => {
-            L.marker([site.lat, site.lon]).addTo(map)
+            L.marker([site.lat, site.lon], { icon: redIcon }).addTo(map)
               .bindPopup(`<b>${site.name}</b><br>${site.desc}`);
         });
 
