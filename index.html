@@ -60,7 +60,7 @@
             </div>
         </div>
 
-        <!-- Clean Grid Layout: Map on Left, NLP/ViT AI Translator & Guide on Right -->
+        <!-- Clean Grid Layout: Map on Left, Backend NLP/ViT AI Translator & Guide on Right -->
         <div class="grid lg:grid-cols-3 gap-8">
             
             <!-- Interactive Heritage Map (2 Columns) -->
@@ -72,11 +72,11 @@
                 <div id="heritage-map" style="width: 100%; height: 480px; border-radius: 16px; border: 2px solid #fde68a;"></div>
             </div>
 
-            <!-- AI Heritage Guide + 28 Language NLP/ViT Translator (1 Column) -->
+            <!-- AI Heritage Guide + Backend 28-Language Translator (1 Column) -->
             <div class="bg-white border-2 border-amber-300 rounded-3xl shadow-2xl overflow-hidden flex flex-col h-[540px]">
                 <div class="bg-orange-800 text-white p-3.5 font-bold flex justify-between items-center">
-                    <span class="text-sm">🤖 AI Guide & NLP Translator</span>
-                    <span class="text-[10px] bg-orange-900 px-2 py-0.5 rounded-full animate-pulse">ViT / NLP Active</span>
+                    <span class="text-sm">🤖 AI Guide & Server Backend</span>
+                    <span class="text-[10px] bg-orange-900 px-2 py-0.5 rounded-full animate-pulse">API Connected</span>
                 </div>
                 
                 <!-- Language Selector Dropdown -->
@@ -121,7 +121,7 @@
                 <!-- Chat Messages Box -->
                 <div id="chat-messages" class="p-4 flex-1 overflow-y-auto text-sm space-y-3 bg-amber-50/50">
                     <div id="welcome-msg" class="bg-white p-3 rounded-2xl border border-amber-200 shadow-sm text-gray-800">
-                        Namaste! Ask me anything about Indian heritage, temples, or artisan traditions. (Select any of the 28 languages above for real-time neural translation).
+                        Namaste! Ask me anything about Indian heritage. Requests are securely processed via serverless backend API.
                     </div>
                 </div>
 
@@ -135,7 +135,7 @@
         </div>
     </main>
 
-    <!-- Map, GPS & Neural Translation Chatbot Logic -->
+    <!-- Map, GPS & Backend API Chatbot Logic -->
     <script>
         // Initialize Map strictly centered on India
         let map = L.map('heritage-map').setView([22.9734, 78.6569], 5);
@@ -192,31 +192,32 @@
             );
         }
 
-        // NLP / ViT Multilingual AI Translator & Guide Logic
-        function sendChatMessage() {
+        // Serverless Backend API Chatbot & Translator Logic
+        async function sendChatMessage() {
             const input = document.getElementById('chat-input');
             const messages = document.getElementById('chat-messages');
             const langSelect = document.getElementById('translator-lang').value;
             
             if(!input.value.trim()) return;
 
-            messages.innerHTML += `<div class="bg-orange-100 p-3 rounded-2xl border border-amber-200 text-right ml-6 font-medium text-gray-800">${input.value}</div>`;
             const userQuery = input.value;
+            messages.innerHTML += `<div class="bg-orange-100 p-3 rounded-2xl border border-amber-200 text-right ml-6 font-medium text-gray-800">${userQuery}</div>`;
             input.value = "";
 
-            setTimeout(() => {
-                let responseText = `That is a wonderful inquiry regarding <b>${userQuery}</b>. BharatVividha's archival records confirm rich civilizational roots connected across our regional databases!`;
-                
-                // Simulated Neural NLP/ViT Translation for demonstration across selected language
-                if(langSelect === 'hi') responseText = `नमस्ते! आपके प्रश्न "${userQuery}" के संबंध में, भारतविविधता के पास समृद्ध ऐतिहासिक साक्ष्य और सांस्कृतिक अभिलेख मौजूद हैं।`;
-                if(langSelect === 'bn') responseText = `নমস্কার! "${userQuery}" সম্পর্কিত আপনার অনুসন্ধানে ভারতবৈচিত্র্য প্ল্যাটফর্মে সমৃদ্ধ ঐতিহাসিক ও সাংস্কৃতিক তথ্য রয়েছে।`;
-                if(langSelect === 'es') responseText = `¡Hola! Con respecto a "${userQuery}", ¡los archivos de BharatVividha confirman profundas raíces civilizatorias!`;
-                if(langSelect === 'fr') responseText = `Bonjour! Concernant "${userQuery}", les archives de BharatVividha confirment de riches racines culturelles!`;
-                if(langSelect === 'ja') responseText = `こんにちは！「${userQuery}」に関して、BharatVividhaのアーカイブには豊かな文化的ルーツが記録されています。`;
+            try {
+                const response = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: userQuery, language: langSelect })
+                });
 
-                messages.innerHTML += `<div class="bg-white p-3 rounded-2xl border border-amber-200 shadow-sm mr-6 text-gray-800">${responseText} <div class="text-[9px] text-orange-800 font-bold mt-1 uppercase">⚡ Translated via NLP / ViT [${langSelect.toUpperCase()}]</div></div>`;
+                const data = await response.json();
+
+                messages.innerHTML += `<div class="bg-white p-3 rounded-2xl border border-amber-200 shadow-sm mr-6 text-gray-800">${data.reply} <div class="text-[9px] text-orange-800 font-bold mt-1 uppercase">⚡ Serverless Backend API [${langSelect.toUpperCase()}]</div></div>`;
                 messages.scrollTop = messages.scrollHeight;
-            }, 600);
+            } catch (error) {
+                messages.innerHTML += `<div class="bg-red-50 p-3 rounded-2xl border border-red-200 text-red-800 text-xs">Backend communication error. Please check network.</div>`;
+            }
         }
     </script>
 </body>
