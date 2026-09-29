@@ -42,7 +42,7 @@
         </div>
     </header>
 
-    <!-- Hero Section with Your Exact Official Logo Image File -->
+    <!-- Hero Section with Official Logo Image File -->
     <main class="container mx-auto px-6 py-10 max-w-6xl space-y-10">
         <div class="text-center space-y-6 bg-white/90 p-8 md:p-12 rounded-3xl shadow-xl border border-amber-200 backdrop-blur-md">
             
@@ -136,7 +136,7 @@
 
         </div>
 
-        <!-- Find Monuments & Sites Near You (Scrollable State & District Dropdown) -->
+        <!-- Find Monuments & Sites Near You (Scrollable State & District Dropdown with Specific Results) -->
         <div class="bg-white p-8 rounded-3xl border border-amber-200 shadow-xl space-y-6">
             <div class="space-y-2">
                 <h2 class="text-2xl md:text-3xl font-extrabold text-gray-900">Find monuments & sites near you</h2>
@@ -173,8 +173,8 @@
             </div>
 
             <!-- Dynamic Discovery Result Box -->
-            <div id="discovery-result" class="hidden p-4 bg-amber-50 rounded-2xl border border-amber-200 text-sm text-gray-800">
-                <!-- Populated via JS -->
+            <div id="discovery-result" class="hidden p-5 bg-amber-50 rounded-2xl border border-amber-200 text-sm text-gray-800 space-y-2">
+                <!-- Populated dynamically with specific monuments per district -->
             </div>
         </div>
 
@@ -209,6 +209,45 @@
               .bindPopup(`<b>${site.name}</b><br>${site.desc}`);
         });
 
+        // Unique specific monuments data for every single district
+        const districtDatabase = {
+            "Malda": ["Adina Mosque (14th Century Sultanate Architecture)", "Gaur Citadel & Dakhil Darwaza", "Firoz Minar Monument", "Bara Sakhawat Mandir"],
+            "Kolkata": ["Victoria Memorial Hall", "Howrah Bridge Engineering Marvel", "Marble Palace Museum", "Dakshineswar Kali Temple"],
+            "Darjeeling": ["Ghoom Monastery (Oldest Tibetan Monastery)", "Batasia Loop War Memorial", "Himalayan Mountaineering Institute Heritage Site"],
+            "Bankura": ["Susunia Rock Inscriptions", "Terracotta Temples of Bishnupur (Madhabdeva & Rasmancha)"],
+            "Murshidabad": ["Hazarduari Palace Museum", "Katra Masjid", "Nizamat Imambara"],
+            "Jaipur": ["Amber Fort & Palace", "Hawa Mahal", "Jantar Mantar Astronomical Observatory", "City Palace"],
+            "Jodhpur": ["Mehrangarh Fort", "Jaswant Thada Memorial", "Umaid Bhawan Palace"],
+            "Udaipur": ["City Palace Lake Complex", "Saheliyon-ki-Bari", "Jag Mandir"],
+            "Jaisalmer": ["Jaisalmer Sonar Qila (Golden Fort)", "Patwon ki Haveli", "Sagar Lake Memorials"],
+            "Ajmer": ["Ajmer Sharif Dargah", "Taragarh Fort", "Ana Sagar Baradari"],
+            "Guwahati": ["Kamakhya Temple (Nilachal Hill)", "Umananda Temple (Peacock Island)", "Basistha Ashram"],
+            "Majuli": ["Garamur Satra", "Auniati Satra", "Kamalabari Traditional Vaishnavite Monasteries"],
+            "Dibrugarh": ["Dinooda Heritage Tea Estates", "Jeypore Rainforest Tribal Artifacts"],
+            "Jorhat": ["Dhodar Ali Ancient Road", "Sukapha Samannay Kshetra", "Hollongapar Gibbon Sanctuary Heritage"],
+            "Patna": ["Patna Sahib Gurudwara", "Golghar Granary Monument", "Kumhrar Mauryan Archaeological Site", "Bihar Museum"],
+            "Gaya": ["Mahabodhi Temple Complex (UNESCO World Heritage)", "Vishnupad Temple", "Mangla Gauri Shrine"],
+            "Nalanda": ["Nalanda Mahavihara Ancient University Ruins", "Nalanda Archaeological Museum", "Huen Tsang Memorial Hall"],
+            "Vaishali": ["Ashokan Pillar at Kolhua", "Relic Stupa of Lord Buddha", "Bawan Pokhar Temple"],
+            "Varanasi": ["Kashi Vishwanath Mandir", "Sarnath Dhamekh Stupa & Ruins", "Dashashwamedh Ghat Heritage Precinct"],
+            "Agra": ["Taj Mahal", "Agra Fort", "Fatehpur Sikri UNESCO Complex", "Itimad-ud-Daulah Tomb"],
+            "Ayodhya": ["Ram Janmabhoomi Temple Complex", "Hanuman Garhi", "Kanak Bhawan", "Guptar Ghat"],
+            "Prayagraj": ["Triveni Sangam Fort", "Anand Bhawan Historical Museum", "Khusro Bagh Tombs"],
+            "Lucknow": ["Bara Imambara", "Rumi Darwaza", "British Residency Historical Monument"],
+            "Chennai": ["Kapaleeshwarar Temple Mylapore", "San Thome Basilica", "Fort St. George Museum"],
+            "Madurai": ["Meenakshi Amman Temple", "Thirumalai Nayakar Palace", "Gandhi Memorial Museum"],
+            "Thanjavur": ["Brihadeeswarar Temple (Chola Architecture)", "Thanjavur Royal Palace & Art Gallery", "Saraswathi Mahal Library"],
+            "Coimbatore": ["Marudamalai Murugan Temple", "Dhyanalinga Complex", "Gass Forest Museum"],
+            "Kochi": ["Mattancherry Palace (Dutch Palace)", "St. Francis Church (Oldest European Church)", "Chinese Fishing Nets Precinct", "Paradesi Synagogue"],
+            "Thiruvananthapuram": ["Padmanabhaswamy Temple", "Kuthira Malika Palace Museum", "Napier Museum"],
+            "Alappuzha": ["Krishnapuram Palace", "Ambalapuzha Sri Krishna Temple", "Punnamada Lake Heritage Route"],
+            "Munnar": ["Lockhart Gap Ancient Dolmens", "Tata Tea Museum Heritage Center"],
+            "Mumbai": ["Gateway of India", "Chhatrapati Shivaji Maharaj Terminus (CSMT)", "Elephanta Caves Island", "Elephanta Heritage Precinct"],
+            "Pune": ["Shaniwar Wada Palace Fort", "Aga Khan Palace", "Sinhagad Historical Fortress"],
+            "Aurangabad (Chhatrapati Sambhajinagar)": ["Ajanta & Ellora UNESCO Rock-Cut Caves", "Bibi Ka Maqbara", "Daulatabad Fortress"],
+            "Nagpur": ["Deekshabhoomi Monument", "Sitabuldi Fort", "Nagardhan Ancient Fort"]
+        };
+
         const districtMap = {
             "west-bengal": ["Malda", "Kolkata", "Darjeeling", "Bankura", "Murshidabad"],
             "rajasthan": ["Jaipur", "Jodhpur", "Udaipur", "Jaisalmer", "Ajmer"],
@@ -240,9 +279,18 @@
             });
 
             distSelect.onchange = function() {
-                if(this.value) {
+                const selectedDistrict = this.value;
+                if(selectedDistrict) {
                     resultBox.classList.remove('hidden');
-                    resultBox.innerHTML = `📍 <b>Discovered Sites in ${this.value}:</b> Verified archival monuments, sacred mandirs, and cultural landmarks successfully loaded from regional registry.`;
+                    const monuments = districtDatabase[selectedDistrict] || ["Archival monuments and cultural sites registered."];
+                    let listHTML = `<p class="font-bold text-orange-900 mb-1">📍 Verified Monuments & Sites in ${selectedDistrict}:</p><ul class="list-disc pl-5 space-y-1">`;
+                    monuments.forEach(m => {
+                        listHTML += `<li>${m}</li>`;
+                    });
+                    listHTML += `</ul>`;
+                    resultBox.innerHTML = listHTML;
+                } else {
+                    resultBox.classList.add('hidden');
                 }
             }
         }
