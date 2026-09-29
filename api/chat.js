@@ -14,7 +14,7 @@ export default function handler(req, res) {
             return res.status(400).json({ error: 'Message is required' });
         }
 
-        // Server-side response processing based on language selection
+        // Server-side response processing across languages
         let reply = `[Server Backend]: Verified heritage archives confirm deep historical roots for "${message}".`;
 
         if (language === 'hi') {
@@ -25,6 +25,10 @@ export default function handler(req, res) {
             reply = `[Servidor Backend]: ¡Los archivos históricos confirman profundas raíces para "${message}"!`;
         } else if (language === 'fr') {
             reply = `[Serveur Backend]: Les archives historiques confirment de riches racines pour "${message}".`;
+        } else if (language === 'zh') {
+            reply = `[后端服务器]: 经核实的遗产档案证实了关于 "${message}" 的深厚历史根源。`;
+        } else if (language === 'ko') {
+            reply = `[서버 백엔드]: 검증된 유산 기록에 따르면 "${message}"에 대한 깊은 역사적 뿌리가 확인되었습니다.`;
         } else if (language === 'ja') {
             reply = `[サーバーバックエンド]「${message}」に関する歴史的資料と文化的ルーツが検証されました。`;
         }
